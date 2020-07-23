@@ -1,0 +1,2 @@
+* 0 * * * cd $HOME/project && /home/my/virtual/bin/python /home/my/project/manage.py > /tmp/cronlog.txt 2>&1 # run 12 am at midnight
+* 12 * * * run-one python3 main.py # run 12 pm at noon
