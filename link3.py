@@ -1,8 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
+from pandasql import Links
 def link3():
-    return getAll()
+    getAll()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -12,8 +13,9 @@ def getAll():
     panda=[]
     numba=0
     setop=False
-    while True:
-        try:
+    try:
+        print("link 3 start scraping...")
+        while True:       
             link="https://www.lbbd.gov.uk/rest/news?_format=json&page="+str(numba)
             r = requests.get(link)
             lista=r.json()["results"]
@@ -23,29 +25,32 @@ def getAll():
                 print(compareDate(soup2.getText()))
                 print(soup2.getText())
                 if compareDate(soup2.getText()):
-                    panda.append(putData(
-                        main_link="https://www.lbbd.gov.uk",
-                        link=link,source=a["path"],title=a["title"]
-                    ,date=getDate(soup2.getText())
-                    ,body=getBody("https://www.lbbd.gov.uk"+a["path"])
-                    ,image="https://www.lbbd.gov.uk"+a["image"]
-                    ))
+                    papa,created=Links.get_or_create(
+                        main_link="https://www.lbbd.gov.uk"                     
+                    ,date=getDate(soup2.getText())         
+                    ,title=a["title"]           
+                    )
+                    papa.link=link,
+                    papa.source=a["path"]
+                    papa.body=getBody("https://www.lbbd.gov.uk"+a["path"])
+                    papa.image="https://www.lbbd.gov.uk"+a["image"]
+                    papa.save()
+                    
                 else:
                     setop=True
             numba+=1
             if setop:
                 break
-        except:
-            break
-            print("error")
-            return panda
+    except Exception as e:
+            print("error link 3",str(e))
+            # return panda
         
                 
 
 
     # soup = BeautifulSoup(r.text, 'html.parser')
     # lista=soup.select("article.node.node--press-release.node--dynamic-teaser")
-    return panda
+    # return panda
     
 
 def getDate(dates):

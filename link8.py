@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup,CData
-
+from pandasql import Links
 def link8():
-    return getList()
+    getList()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -14,6 +14,7 @@ def getList():
     number=0
     
     try:
+        print("link 8 start scraping...")
         link='https://news.camden.gov.uk/tagfeed/en/tags/headlines,pr'
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'lxml-xml')
@@ -26,20 +27,22 @@ def getList():
             image=a.select_one("enclosure").get("url")
             title=a.select_one("title").getText()
             if compareDate(s.getText()):
-                pa.append(putData(
+                papa,created=Links.get_or_create(
                     main_link="https://news.camden.gov.uk",
-                    link=link,
-                    source=a.select_one("link").getText(),
-                    title=title,
                     date=getDate(s.getText()),
-                    body=getBody(a.select_one("description").getText()),
-                    image=image,
-                    ))
+                    title=title
+                    
+                    )
+                papa.body=getBody(a.select_one("description").getText())
+                papa.image=image
+                papa.link=link
+                papa.source=a.select_one("link").getText()
+                papa.save()
                 
     except Exception as e:
-        print("err ", str(e) )
-        return pa
-    return pa
+        print("err link 8", str(e) )
+        # return pa
+    # return pa
         
     
 

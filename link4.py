@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
-
+from pandasql import Links
 def link4():
-    return getList()
+    getList()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -13,6 +13,7 @@ def getList():
     pa=[]
     number=0
     try:
+        print("link 4 start scraping...")
         while True:
             namber=str(number)
             setop=False
@@ -26,24 +27,26 @@ def getList():
                 print(compareDate(s.getText().replace("Last updated: ", "")))
                 print(a.select_one("a").get("href"))
                 if compareDate(s.getText().replace("Last updated: ", "")):
-                    pa.append(putData(
+                    papa,created=Links.get_or_create(
                         main_link="https://www.barnet.gov.uk",
-                        link=link,
-                        source=a.select_one("a").get("href"),
-                        title=a.select_one("a").getText(),
-                        date=getDate(s.getText().replace("Last updated: ", "")),
-                        body=getBody('https://www.barnet.gov.uk'+a.select_one("a").get("href")),
-                        image='https://www.barnet.gov.uk'+a.select_one("img").get("src"),
-                        ))
+                        date=getDate(s.getText().replace("Last updated: ", "")),                        
+                        title=a.select_one("a").getText()
+                        )
+                    papa.link=link
+                    papa.source=a.select_one("a").get("href")
+                    papa.body=getBody('https://www.barnet.gov.uk'+a.select_one("a").get("href"))
+                    papa.image='https://www.barnet.gov.uk'+a.select_one("img").get("src")
+                    papa.save()
+                    
                 else:
                     setop=True
             if setop:
                 break
             number+=1
     except Exception as e:
-        print("err ", str(e) )
-        return pa
-    return pa
+        print("err link 4 ", str(e) )
+        # return pa
+    # return pa
         
     
 

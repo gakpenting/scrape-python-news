@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
-
+from pandasql import Links
 def link5():
-    return getList()
+    getList()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -13,6 +13,7 @@ def getList():
     pa=[]
     number=0
     try:
+        print("link 5 start scraping...")
         while True:
             namber=str(number)
             setop=False
@@ -30,33 +31,35 @@ def getList():
                 if copin:
                     image='https://www.bexley.gov.uk'+copin
                 if compareDate(s.getText()):
-                    pa.append(putData(
+                    papa,created=Links.get_or_create(
                         main_link='https://www.bexley.gov.uk',
-                        link=link,
-                        source=a.select_one("a").get("href"),
-                        title=a.select_one("a").getText(),
                         date=getDate(s.getText()),
-                        body=getBody('https://www.bexley.gov.uk'+a.select_one("a").get("href")),
-                        image=image,
-                        ))
+                        title=a.select_one("a").getText()
+                        
+                        )
+                    papa.body=getBody('https://www.bexley.gov.uk'+a.select_one("a").get("href"))
+                    papa.image=image
+                    papa.link=link
+                    papa.source=a.select_one("a").get("href")
+                    papa.save()
                 else:
                     setop=True
             if setop:
                 break
             number+=1
     except Exception as e:
-        print("err ", str(e) )
-        return pa
-    return pa
+        print("err link 5 ", str(e) )
+        # return pa
+    # return pa
         
     
 
 def getDate(dates):
-    dt = datetime.strptime(dates.strip(), '%d %B, %A, %Y - %H:%M pm')
+    dt = datetime.strptime(dates.strip(), '%d %B, %A, %Y - %H:%M %p')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
 def compareDate(dates):
-    dt = datetime.strptime(dates.strip(), '%d %B, %A, %Y - %H:%M pm')
+    dt = datetime.strptime(dates.strip(), '%d %B, %A, %Y - %H:%M %p')
     dateCompare = date(2020, 6, 1)    
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          

@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
-
+from pandasql import Links
 def link6():
-    return getList()
+    getList()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -14,6 +14,7 @@ def getList():
     number=0
     capin=1
     try:
+        print("link 6 start scraping...")
         while True:
             
             tobi=capin*10
@@ -40,24 +41,25 @@ def getList():
                 elif a.select_one("a"):
                     title=a.select_one("a").getText()
                 if compareDate(s):
-                    pa.append(putData(
+                    papa,created=Links.get_or_create(
                         main_link="https://www.brent.gov.uk",
-                        link=link,
-                        source=a.select_one("a").get("href") if a.select_one("a") else a.get("href"),
-                        title=title,
-                        date=getDate(s),
-                        body=getBody('https://www.brent.gov.uk'+a.select_one("a").get("href") if a.select_one("a") else a.get("href")),
-                        image=image,
-                        ))
+                                             date=getDate(s),
+                                             title=title
+                        )
+                    papa.link=link,
+                    papa.source=a.select_one("a").get("href") if a.select_one("a") else a.get("href")
+                    papa.body=getBody('https://www.brent.gov.uk'+a.select_one("a").get("href") if a.select_one("a") else a.get("href"))
+                    papa.image=image
+                    papa.save()
                 else:
                     setop=True
             if setop:
                 break
             capin+=1
     except Exception as e:
-        print("err ", str(e) )
-        return pa
-    return pa
+        print("err link 6", str(e) )
+        # return pa
+    # return pa
         
     
 

@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
-
+from pandasql import Links
 def link2():
-    return getList()
+    getList()
     
 
 def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
@@ -13,6 +13,7 @@ def getList():
     pa=[]
     number=0
     try:
+        print("link 2 start scraping...")
         while True:
             namber=str(number)
             setop=False
@@ -26,24 +27,25 @@ def getList():
                 print(compareDate(s.getText()))
                 print(a.select_one("a").get("href"))
                 if compareDate(s.getText()):
-                    pa.append(putData(
+                    papa,created=Links.get_or_create(
                         main_link="https://www.london.gov.uk",
-                        link=link,
-                        source=a.select_one("a").get("href"),
-                        title=a.select_one("a").get("title"),
                         date=getDate(s.getText()),
-                        body=getBody('https://www.london.gov.uk'+a.select_one("a").get("href")),
-                        image='',
-                        ))
+                        title=a.select_one("a").get("title"),
+                        image=''
+                        )
+                    papa.link=link
+                    papa.source=a.select_one("a").get("href")
+                    papa.body=getBody('https://www.london.gov.uk'+a.select_one("a").get("href"))
+                    papa.save()
                 else:
                     setop=True
             if setop:
                 break
             number+=1
     except Exception as e:
-        print("err ", str(e) )
-        return pa
-    return pa
+        print("link 2 error ", str(e) )
+        # return pa
+    # return pa
         
     
 
