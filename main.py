@@ -8,16 +8,22 @@ from link7 import link7
 from link8 import link8
 from link9 import link9
 from link10 import link10
+from pandasql import StartScrape
+from datetime import datetime
+print("scraping started")
+poldi,created=StartScrape.get_or_create(id=1)
+poldi.date=datetime.now()
+poldi.save()
 link1()
-link2()
-link3()
-link4()
-link5()
-link6()
-link7()
-link8()
-link9()
-link10()
+# link2()
+# link3()
+# link4()
+# link5()
+# link6()
+# link7()
+# link8()
+# link9()
+# link10()
 # panda1=copi1 if copi1 else []
 # for data_dict in panda1:
 #     Links.get_or_create(**data_dict)

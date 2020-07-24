@@ -1,6 +1,7 @@
 Master username
-postgres
+admin
 Master password
-YiXI2q4eomQigMprJQu7
+England123&
 Endpoint
-database-1.c5u8ieb3numy.us-east-2.rds.amazonaws.com
+kedalert-1.cf8fsz14idww.eu-west-2.rds.amazonaws.com
+CREATE DATABASE all_link COLLATE utf8mb4_general_ci;
