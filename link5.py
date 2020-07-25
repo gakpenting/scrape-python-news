@@ -32,15 +32,14 @@ def getList():
                     image='https://www.bexley.gov.uk'+copin
                 if compareDate(s.getText()):
                     papa,created=Links.get_or_create(
-                        main_link='https://www.bexley.gov.uk',
+                        LA_name="Bexley",
+                LA_pr="https://www.bexley.gov.uk/news",
                         date=getDate(s.getText()),
                         title=a.select_one("a").getText()
                         
                         )
                     papa.body=getBody('https://www.bexley.gov.uk'+a.select_one("a").get("href"))
                     papa.image=image
-                    papa.link=link
-                    papa.source=a.select_one("a").get("href")
                     papa.save()
                 else:
                     setop=True
@@ -78,7 +77,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('.bs-region--main').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
-        return "error"
+        return ""

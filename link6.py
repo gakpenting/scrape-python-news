@@ -42,12 +42,11 @@ def getList():
                     title=a.select_one("a").getText()
                 if compareDate(s):
                     papa,created=Links.get_or_create(
-                        main_link="https://www.brent.gov.uk",
+                        LA_name="Brent",
+                LA_pr="https://www.brent.gov.uk/news",
                                              date=getDate(s),
                                              title=title
                         )
-                    papa.link=link,
-                    papa.source=a.select_one("a").get("href") if a.select_one("a") else a.get("href")
                     papa.body=getBody('https://www.brent.gov.uk'+a.select_one("a").get("href") if a.select_one("a") else a.get("href"))
                     papa.image=image
                     papa.save()
@@ -79,7 +78,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('article').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return ""

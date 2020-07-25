@@ -26,12 +26,11 @@ def getAll():
                 print(soup2.getText())
                 if compareDate(soup2.getText()):
                     papa,created=Links.get_or_create(
-                        main_link="https://www.lbbd.gov.uk"                     
-                    ,date=getDate(soup2.getText())         
+                        LA_name="",
+                LA_pr="https://www.lbbd.gov.uk/news",
+                    date=getDate(soup2.getText())         
                     ,title=a["title"]           
                     )
-                    papa.link=link,
-                    papa.source=a["path"]
                     papa.body=getBody("https://www.lbbd.gov.uk"+a["path"])
                     papa.image="https://www.lbbd.gov.uk"+a["image"]
                     papa.save()
@@ -70,7 +69,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('.article--body').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return "error"

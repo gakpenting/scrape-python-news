@@ -28,12 +28,11 @@ def getList():
                 print(a.select_one("a").get("href"))
                 if compareDate(s.getText().replace("Last updated: ", "")):
                     papa,created=Links.get_or_create(
-                        main_link="https://www.barnet.gov.uk",
+                        LA_name="Barnet",
+                LA_pr="https://www.barnet.gov.uk/news",
                         date=getDate(s.getText().replace("Last updated: ", "")),                        
                         title=a.select_one("a").getText()
                         )
-                    papa.link=link
-                    papa.source=a.select_one("a").get("href")
                     papa.body=getBody('https://www.barnet.gov.uk'+a.select_one("a").get("href"))
                     papa.image='https://www.barnet.gov.uk'+a.select_one("img").get("src")
                     papa.save()
@@ -65,7 +64,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('article').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return "error"

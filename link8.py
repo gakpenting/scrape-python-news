@@ -28,15 +28,14 @@ def getList():
             title=a.select_one("title").getText()
             if compareDate(s.getText()):
                 papa,created=Links.get_or_create(
-                    main_link="https://news.camden.gov.uk",
+                         LA_name="Camden",
+                LA_pr="https://news.camden.gov.uk/",
                     date=getDate(s.getText()),
                     title=title
                     
                     )
                 papa.body=getBody(a.select_one("description").getText())
                 papa.image=image
-                papa.link=link
-                papa.source=a.select_one("link").getText()
                 papa.save()
                 
     except Exception as e:
@@ -66,7 +65,7 @@ def getBody(link):
         #     if isinstance(cd, CData):
         #         panda+=cd
         
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
         
      
     except:

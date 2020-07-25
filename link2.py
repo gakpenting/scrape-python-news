@@ -28,13 +28,12 @@ def getList():
                 print(a.select_one("a").get("href"))
                 if compareDate(s.getText()):
                     papa,created=Links.get_or_create(
-                        main_link="https://www.london.gov.uk",
+                        LA_name="Greater London",
+                LA_pr="https://www.london.gov.uk/media-centre",
                         date=getDate(s.getText()),
                         title=a.select_one("a").get("title"),
                         image=''
                         )
-                    papa.link=link
-                    papa.source=a.select_one("a").get("href")
                     papa.body=getBody('https://www.london.gov.uk'+a.select_one("a").get("href"))
                     papa.save()
                 else:
@@ -64,7 +63,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('div.content').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return "error"

@@ -28,14 +28,13 @@ def getList():
             title=a.select_one("title").getText()
             if compareDate(s.getText()):
                 papa,created=Links.get_or_create(
-                    main_link="https://www.bromley.gov.uk",
+                    LA_name="Bromley",
+                LA_pr="https://www.bromley.gov.uk/news",
                                         date=getDate(s.getText()),
                                         title=title                    
                     )
                 papa.body=getBody(a.select_one("link").getText())
                 papa.image=image
-                papa.link=link
-                papa.source=a.select_one("link").getText()
                 papa.save()
                 
     except Exception as e:
@@ -64,7 +63,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('#main-content > div.main-left.column.span-8 > div').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return ""

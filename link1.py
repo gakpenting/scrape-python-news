@@ -21,27 +21,51 @@ def link1():
             date2 = date(dt.year, dt.month, dt.day)
             dateCompared = date2 > dateCompare    
             print(a.select_one("a").get("title"))      
+            
             if dateCompared == True:
-                papa,created=Links.get_or_create(main_link="http://www.stevenage.gov.uk",
+                
+                papa,created=Links.get_or_create(LA_name="Stevenage",
+                LA_pr="http://www.stevenage.gov.uk/news-and-events/news/",
                 title=a.select_one("a").get("title"),
                 date=date2.strftime('%Y-%m-%d %H:%M:%S'),
-                image=''
+                
                 )
-                papa.link=a.select_one("a").get("href")
-                papa.source='http://www.stevenage.gov.uk/news-and-events/news/'
-                papa.body=getBody("http://www.stevenage.gov.uk"+a.select_one("a").get("href"))
+                lopo=getBody("http://www.stevenage.gov.uk"+a.select_one("a").get("href"),0)
+                copo=papa.body if lopo == '' or lopo == None else lopo
+                papa.image=getImage("http://www.stevenage.gov.uk"+a.select_one("a").get("href"),0)
+                papa.body=copo
                 papa.save()
         
         # return data
     except Exception as e:
         print("link 1 error",str(e))
-
-def getBody(link):
+def getImage(link,cupid):
+    print(cupid)
+    cupid+=1
     try:
+        print(link)
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda=soup.select_one('div.ItemDetails').getText()
+        panda=soup.select_one("div#ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_StandardNewsPage_lblBody").select_one('img').get("src")
         return panda
      
-    except:
+    except Exception as e:
+        print(str(e))
         return ""
+def getBody(link,cupid):
+    print(cupid)
+    cupid+=1
+    try:
+        print(link)
+        r = requests.get(link)
+        soup = BeautifulSoup(r.text, 'html.parser')
+        panda=soup.select_one('div#ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_StandardNewsPage_lblBody').getText()
+        return panda.replace('\n', ' ').replace('\r', '').strip()
+     
+    except Exception as e:
+        if cupid != 10:
+            return getBody(link,cupid)
+            
+        else:
+            print(str(e))
+            return ""

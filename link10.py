@@ -29,14 +29,13 @@ def getList():
                 print(a.select_one("a").get("href"))
                 if compareDate(s):
                     papa,created=Links.get_or_create(
-                        main_link="https://ealingnewsextra.co.uk",
+                         LA_name="Ealing",
+                LA_pr="https://ealingnewsextra.co.uk/category/latest-news/", 
                                           date=getDate(s),
                                           title=a.select_one("a").get("title")                        
                         )
                     papa.body=getBody(a.select_one("a").get("href"))
                     papa.image=a.select_one("img").get("src")
-                    papa.link=link
-                    papa.source=a.select_one("a").get("href")
                     papa.save()
                 else:
                     setop=True
@@ -65,7 +64,7 @@ def getBody(link):
         r = requests.get(link)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('div.single-post-content').getText()
-        return panda
+        return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return ""
