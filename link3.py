@@ -26,11 +26,12 @@ def getAll():
                 print(soup2.getText())
                 if compareDate(soup2.getText()):
                     papa,created=Links.get_or_create(
-                        LA_name="",
+                        
                 LA_pr="https://www.lbbd.gov.uk/news",
                     date=getDate(soup2.getText())         
                     ,title=a["title"]           
                     )
+                    papa.LA_name="Barking and Dagenham"
                     papa.body=getBody("https://www.lbbd.gov.uk"+a["path"])
                     papa.image="https://www.lbbd.gov.uk"+a["image"]
                     papa.save()
