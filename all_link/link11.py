@@ -70,4 +70,4 @@ def getBody(link):
         return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
-        return "error"
+        return ""

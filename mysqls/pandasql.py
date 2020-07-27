@@ -27,5 +27,8 @@ class StartScrape(Model):
     class Meta:
         database = mysql_db
         db_table = "start_scrape"
+def deleteWhere(LA_name=None):
+    q = Links.delete().where(Links.LA_name == LA_name)
+    q.execute()
 Links.create_table(Links)
 StartScrape.create_table(StartScrape)
