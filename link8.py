@@ -15,18 +15,19 @@ def getList():
     
     try:
         print("link 8 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Camden",Links.LA_pr=="https://news.camden.gov.uk/").order_by(Links.date.desc())
         link='https://news.camden.gov.uk/tagfeed/en/tags/headlines,pr'
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'lxml-xml')
         lista=soup.select("item")
         
-        for a in lista:
+        for a in lista[::-1]:
             s=a.select_one("pubDate")
-            print(compareDate(s.getText()))
+            print(compareDate(s.getText(),lastDate))
             print(a.select_one("link").getText())
             image=a.select_one("enclosure").get("url")
             title=a.select_one("title").getText()
-            if compareDate(s.getText()):
+            if compareDate(s.getText(),lastDate):
                 papa,created=Links.get_or_create(
                          LA_name="Camden",
                 LA_pr="https://news.camden.gov.uk/",
@@ -49,9 +50,12 @@ def getDate(dates):
     dt = datetime.strptime(dates.strip(), '%a, %d %b %Y %H:%M:%S %z')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = datetime.strptime(dates.strip(), '%a, %d %b %Y %H:%M:%S %z')
-    dateCompare = date(2020, 6, 1)    
+    dateCompare = date(2020, 6, 1)  
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)    
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared

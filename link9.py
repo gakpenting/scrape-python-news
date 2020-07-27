@@ -15,19 +15,20 @@ def getList():
     number=0
     try:
         print("link 9 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Croydon",Links.LA_pr=="https://wp.croydon.gov.uk/newsroom/2020/").order_by(Links.date.desc())
         while True:
             namber=str(number)
             setop=False
             link='https://wp.croydon.gov.uk/newsroom/2020/page/'+namber
-            r = requests.get(link)
+            r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("article")
             
-            for a in lista:
+            for a in lista[::-1]:
                 s=a.select_one(".fusion-single-line-meta").select("span")[1].getText()
-                print(compareDate(s))
+                print(compareDate(s,lastDate))
                 print(a.select_one("a").get("href"))
-                if compareDate(s):
+                if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
                          LA_name="Croydon",
                 LA_pr="https://wp.croydon.gov.uk/newsroom/2020/",                        
@@ -54,15 +55,18 @@ def getDate(dates):
     dt = parse(dates.strip())
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = parse(dates.strip())
-    dateCompare = date(2020, 6, 1)    
+    dateCompare = date(2020, 6, 1)   
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)     
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared
 def getBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('div.post-content').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()

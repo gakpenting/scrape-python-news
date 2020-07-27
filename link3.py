@@ -15,16 +15,17 @@ def getAll():
     setop=False
     try:
         print("link 3 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Barking and Dagenham",Links.LA_pr=="https://www.lbbd.gov.uk/news").order_by(Links.date.desc())
         while True:       
             link="https://www.lbbd.gov.uk/rest/news?_format=json&page="+str(numba)
-            r = requests.get(link)
+            r = requests.get(link, timeout=5)
             lista=r.json()["results"]
-            for a in lista:
+            for a in lista[::-1]:
                 soup = BeautifulSoup(a["date"], 'html.parser')
                 soup2=soup.select_one("time")
-                print(compareDate(soup2.getText()))
+                print(compareDate(soup2.getText(),lastDate))
                 print(soup2.getText())
-                if compareDate(soup2.getText()):
+                if compareDate(soup2.getText(),lastDate):
                     papa,created=Links.get_or_create(
                         
                 LA_pr="https://www.lbbd.gov.uk/news",
@@ -57,9 +58,12 @@ def getDate(dates):
     dt = datetime.strptime(dates, '%A %d %B %Y')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = datetime.strptime(dates, '%A %d %B %Y')
-    dateCompare = date(2020, 6, 1)    
+    dateCompare = date(2020, 6, 1)   
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared
@@ -67,7 +71,7 @@ def compareDate(dates):
 
 def getBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('.article--body').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()

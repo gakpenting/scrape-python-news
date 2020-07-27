@@ -14,19 +14,20 @@ def getList():
     number=0
     try:
         print("link 4 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Barnet",Links.LA_pr=="https://www.barnet.gov.uk/news").order_by(Links.date.desc())
         while True:
             namber=str(number)
             setop=False
             link='https://www.barnet.gov.uk/news?page='+namber
-            r = requests.get(link)
+            r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("li.result")
             
-            for a in lista:
+            for a in lista[::-1]:
                 s=a.select_one(".item-date")
-                print(compareDate(s.getText().replace("Last updated: ", "")))
+                print(compareDate(s.getText().replace("Last updated: ", ""),lastDate))
                 print(a.select_one("a").get("href"))
-                if compareDate(s.getText().replace("Last updated: ", "")):
+                if compareDate(s.getText().replace("Last updated: ", ""),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Barnet",
                 LA_pr="https://www.barnet.gov.uk/news",
@@ -53,15 +54,18 @@ def getDate(dates):
     dt = datetime.strptime(dates.strip(), '%d %B, %Y')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = datetime.strptime(dates.strip(), '%d %B, %Y')
-    dateCompare = date(2020, 6, 1)    
+    dateCompare = date(2020, 6, 1)  
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)  
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared
 def getBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('article').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()

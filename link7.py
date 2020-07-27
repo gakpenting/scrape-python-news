@@ -15,18 +15,19 @@ def getList():
     
     try:
         print("link 7 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Bromley",Links.LA_pr=="https://www.bromley.gov.uk/news").order_by(Links.date.desc())
         link='https://www.bromley.gov.uk/rss/news'
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'lxml-xml')
         lista=soup.select("item")
         
-        for a in lista:
+        for a in lista[::-1]:
             s=a.select_one("pubDate")
-            print(compareDate(s.getText()))
+            print(compareDate(s.getText(),lastDate))
             print(a.select_one("link").getText())
             image=''
             title=a.select_one("title").getText()
-            if compareDate(s.getText()):
+            if compareDate(s.getText(),lastDate):
                 papa,created=Links.get_or_create(
                     LA_name="Bromley",
                 LA_pr="https://www.bromley.gov.uk/news",
@@ -48,19 +49,22 @@ def getDate(dates):
     dt = datetime.strptime(dates.strip(), '%a, %d %b %Y %H:%M:%S %z')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = datetime.strptime(dates.strip(), '%a, %d %b %Y %H:%M:%S %z')
     dateCompare = date(2020, 6, 1)    
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)  
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared
 
 def getBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('#main-content > div.main-left.column.span-8').select_one("a").get("href")
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('#main-content > div.main-left.column.span-8 > div').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()
@@ -69,7 +73,7 @@ def getBody(link):
         return ""
 def getDateBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('p.lead.text-muted').getText()
         return panda

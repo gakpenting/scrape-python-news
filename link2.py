@@ -14,19 +14,20 @@ def getList():
     number=0
     try:
         print("link 2 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Greater London",Links.LA_pr=="https://www.london.gov.uk/media-centre").order_by(Links.date.desc())
         while True:
             namber=str(number)
             setop=False
             link='https://www.london.gov.uk/media-centre/mayors-press-releases?order=DESC&page='+namber
-            r = requests.get(link)
+            r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("article.node.node--press-release.node--dynamic-teaser")
                      
-            for a in lista:
+            for a in lista[::-1]:
                 s=a.select_one(".date-display-single")
-                print(compareDate(s.getText()))
+                print(compareDate(s.getText(),lastDate))
                 print(a.select_one("a").get("href"))
-                if compareDate(s.getText()):
+                if compareDate(s.getText(),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Greater London",
                 LA_pr="https://www.london.gov.uk/media-centre",
@@ -52,15 +53,18 @@ def getDate(dates):
     dt = datetime.strptime(dates, '%d %B %Y')
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates):
+def compareDate(dates,lastDate):
     dt = datetime.strptime(dates, '%d %B %Y')
     dateCompare = date(2020, 6, 1)    
+    if len(lastDate)>0:
+        dateLen=lastDate[0].date
+        dateCompare=date(dateLen.year,dateLen.month,dateLen.day)
     date2 = date(dt.year, dt.month, dt.day)
     dateCompared = date2 > dateCompare          
     return dateCompared
 def getBody(link):
     try:
-        r = requests.get(link)
+        r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('div.content').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()
