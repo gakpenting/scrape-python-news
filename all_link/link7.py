@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
-from pandasql import Links
+from mysqls.pandasql import Links
 def link7():
     getList()
     
