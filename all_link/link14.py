@@ -67,7 +67,8 @@ def getBody(link):
     try:
         r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda=soup.select('div.xrm-attribute-value').getText()
+        panda=soup.select_one('div.page-content').getText()
+        
         return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
