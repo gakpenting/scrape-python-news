@@ -15,6 +15,7 @@ def getList():
     try:
         print("link 4 start scraping...")
         lastDate=Links.select().where(Links.LA_name=="Barnet",Links.LA_pr=="https://www.barnet.gov.uk/news").order_by(Links.date.desc())
+        # lastDate=[]
         while True:
             namber=str(number)
             setop=False
@@ -67,8 +68,8 @@ def getBody(link):
     try:
         r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda=soup.select_one('article').getText()
+        panda=soup.select_one('div.field.field--name-body.field--type-text-with-summary.field--label-hidden.clearfix').getText()
         return panda.replace('\n', ' ').replace('\r', '').strip()
      
     except:
-        return "error"
+        return ""
