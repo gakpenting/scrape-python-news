@@ -39,7 +39,7 @@ def getList():
                 papa.save()
                 
     except Exception as e:
-        print("err link 7 ", str(e) )
+        print("err link 13 ", str(e) )
         # return pa
     # return pa
         
