@@ -1,8 +1,8 @@
 from all_link.start_all import start_all
-# from mysqls.pandasql import Links
-# from all_link.link13 import link13
-# link13()
-
+from mysqls.pandasql import Links,deleteWhere
+# from all_link.link9 import link9
+# link9()
+# deleteWhere(LA_name="Croydon")
 start_all()
 
 

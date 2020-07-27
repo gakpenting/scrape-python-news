@@ -16,6 +16,7 @@ def getList():
     try:
         print("link 9 start scraping...")
         lastDate=Links.select().where(Links.LA_name=="Croydon",Links.LA_pr=="https://wp.croydon.gov.uk/newsroom/2020/").order_by(Links.date.desc())
+        # lastDate=[]
         while True:
             namber=str(number)
             setop=False
@@ -27,13 +28,13 @@ def getList():
             for a in lista[::-1]:
                 s=a.select_one(".fusion-single-line-meta").select("span")[1].getText()
                 print(compareDate(s,lastDate))
-                print(a.select_one("a").get("href"))
+                print(a.select_one("div.fusion-post-content.post-content").select_one("a").getText().strip())
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
-                         LA_name="Croydon",
-                LA_pr="https://wp.croydon.gov.uk/newsroom/2020/",                        
+                        LA_name="Croydon",
+                        LA_pr="https://wp.croydon.gov.uk/newsroom/2020/",                        
                         date=getDate(s),
-                        title=a.select_one("a").getText()
+                        title=a.select_one("div.fusion-post-content.post-content").select_one("a").getText().strip()
                         
                         )
                     papa.body=getBody(a.select_one("a").get("href"))
