@@ -26,8 +26,8 @@ def getList():
             
             for a in lista[::-1]:
                 s=a.select_one("abbr.timeago").getText()
-                print(compareDate(s.strip(),lastDate))
-                print(a.select_one("a").getText())
+                # print(compareDate(s.strip(),lastDate))
+                # print(a.select_one("a").getText())
                 if compareDate(s.strip(),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Bedford",

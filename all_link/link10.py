@@ -26,8 +26,8 @@ def getList():
             
             for a in lista[::-1]:
                 s=a.select_one("time").getText()
-                print(compareDate(s,lastDate))
-                print(a.select_one("a").get("href"))
+                # print(compareDate(s,lastDate))
+                # print(a.select_one("a").get("href"))
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
                          LA_name="Ealing",

@@ -33,8 +33,8 @@ def getList():
                 else:
                     s=getDateBody(a.get("href"))
                 
-                print(compareDate(s,lastDate))
-                print(a.select_one("a").get("href") if a.select_one("a") else a.get("href"))
+                # print(compareDate(s,lastDate))
+                # print(a.select_one("a").get("href") if a.select_one("a") else a.get("href"))
                 image=''
                 title=''
                 if a.select_one(".news_article_image"): 

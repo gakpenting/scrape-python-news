@@ -25,8 +25,8 @@ def getList():
                      
             for a in lista[::-1]:
                 s=a.select_one("p.date")
-                print(compareDate(s.getText().strip(),lastDate))
-                print(a.select_one("a").get("title"))
+                # print(compareDate(s.getText().strip(),lastDate))
+                # print(a.select_one("a").get("title"))
                 if compareDate(s.getText().strip(),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="West Oxfordshire",

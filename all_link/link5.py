@@ -25,8 +25,8 @@ def getList():
             
             for a in lista[::-1]:
                 s=a.select_one("span.field-content")
-                print(compareDate(s.getText(),lastDate))
-                print(a.select_one("a").get("href"))
+                # print(compareDate(s.getText(),lastDate))
+                # print(a.select_one("a").get("href"))
                 image=''
                 copin=getImage('https://www.bexley.gov.uk'+a.select_one("a").get("href"))
                 if copin:

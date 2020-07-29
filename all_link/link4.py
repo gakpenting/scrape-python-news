@@ -26,8 +26,8 @@ def getList():
             
             for a in lista[::-1]:
                 s=a.select_one(".item-date")
-                print(compareDate(s.getText().replace("Last updated: ", ""),lastDate))
-                print(a.select_one("a").get("href"))
+                # print(compareDate(s.getText().replace("Last updated: ", ""),lastDate))
+                # print(a.select_one("a").get("href"))
                 if compareDate(s.getText().replace("Last updated: ", ""),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Barnet",

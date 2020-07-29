@@ -47,10 +47,10 @@ def link1():
     except Exception as e:
         print("link 1 error",str(e))
 def getImage(link,cupid):
-    print(cupid)
+    # print(cupid)
     cupid+=1
     try:
-        print(link)
+        # print(link)
         r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one("div#ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_StandardNewsPage_lblBody").select_one('img').get("src")
@@ -63,7 +63,7 @@ def getBody(link,cupid):
     # print(cupid)
     cupid+=1
     try:
-        print(link)
+        # print(link)
         r = requests.get(link, timeout=5)
         soup = BeautifulSoup(r.text, 'html.parser')
         panda=soup.select_one('div#ctl00_ctl00_ContentPlaceHolder1_ContentPlaceHolder1_StandardNewsPage_lblBody').getText()

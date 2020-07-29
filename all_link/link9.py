@@ -27,8 +27,8 @@ def getList():
             
             for a in lista[::-1]:
                 s=a.select_one(".fusion-single-line-meta").select("span")[1].getText()
-                print(compareDate(s,lastDate))
-                print(a.select_one("div.fusion-post-content.post-content").select_one("a").getText().strip())
+                # print(compareDate(s,lastDate))
+                # print(a.select_one("div.fusion-post-content.post-content").select_one("a").getText().strip())
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Croydon",

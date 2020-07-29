@@ -23,8 +23,8 @@ def getAll():
             for a in lista[::-1]:
                 soup = BeautifulSoup(a["date"], 'html.parser')
                 soup2=soup.select_one("time")
-                print(compareDate(soup2.getText(),lastDate))
-                print(soup2.getText())
+                # print(compareDate(soup2.getText(),lastDate))
+                # print(soup2.getText())
                 if compareDate(soup2.getText(),lastDate):
                     papa,created=Links.get_or_create(
                         

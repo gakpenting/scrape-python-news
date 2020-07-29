@@ -25,8 +25,8 @@ def getList():
                      
             for a in lista[::-1]:
                 s=a.select_one("strong")
-                print(compareDate(s.getText().replace("Publish Date:","").strip(),lastDate))
-                print(a.select_one("a").getText())
+                # print(compareDate(s.getText().replace("Publish Date:","").strip(),lastDate))
+                # print(a.select_one("a").getText())
                 if compareDate(s.getText().replace("Publish Date:","").strip(),lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Wealden",
