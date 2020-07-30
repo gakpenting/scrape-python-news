@@ -3,42 +3,38 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-def link19():
+def link20():
     getList()
-    
 
-def putData(main_link=None,link=None,source=None,title=None,date=None,body=None,image=None):
-    data={'main_link':main_link,'link':link,'source':source,'title':title,'date':date,'body':body,'image':image}
-    return data
 def getList():
     pa=[]
     number=1
     try:
-        print("link 19 start scraping...")
-        lastDate=Links.select().where(Links.LA_name=="Bristol, City of",Links.LA_pr=="https://news.bristol.gov.uk/news").order_by(Links.date.desc())
+        print("link 20 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Buckinghamshire",Links.LA_pr=="https://www.buckscc.gov.uk/news/").order_by(Links.date.desc())
         # lastDate=[]
         while True:
             namber=str(number)
             setop=False
-            link='https://news.bristol.gov.uk/news?page='+namber
+            link='https://www.buckscc.gov.uk/news/?page='+namber
             r = requests.get(link, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
-            lista=soup.select(".cell.cell-contained.no-padding")
+            lista=soup.select("li.thumbnail-wrapper")
             # print(len(lista))
             # exit()
             for a in lista[::-1]:
-                s=a.select_one("p.date").getText()
-                # print(s)
-                # print(a.select_one("a").get("href"))
+                s=a.select_one("li.list-group-item.thumbnail-date-caption").getText()
+                print(s)
+                print(a.select_one("a").get("href"))
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
-                        LA_name="Bristol, City of",
-                LA_pr="https://news.bristol.gov.uk/news",
+                        LA_name="Buckinghamshire",
+                        LA_pr="https://www.buckscc.gov.uk/news/",
                         date=getDate(s),                        
                         title=a.select_one("a").getText()
                         )
-                    papa.body=getBody('https://news.bristol.gov.uk'+a.select_one("a").get("href"))
-                    papa.image=a.select_one("img").get("src")
+                    papa.body=getBody(a.select_one("a").get("href"))
+                    papa.image="https://www.buckscc.gov.uk"+a.select_one("img").get("src")
                     papa.save()
                     
                 else:
@@ -47,7 +43,7 @@ def getList():
                 break
             number+=1
     except Exception as e:
-        print("err link 19 ", str(e) )
+        print("err link 20 ", str(e) )
         # return pa
     # return pa
         
@@ -70,9 +66,8 @@ def getBody(link):
     try:
         r = requests.get(link, timeout=15)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda1=soup.select_one('div.content-summary').getText()
-        panda=soup.select_one('div.content-body').getText()
-        return panda1.replace('\n', ' ').replace('\r', '').strip()+panda.replace('\n', ' ').replace('\r', '').strip()
+        panda1=soup.select_one('div.pcg-rte-wrapper').getText()
+        return panda1.replace('\n', ' ').replace('\r', '').strip()
      
     except:
         return ""
