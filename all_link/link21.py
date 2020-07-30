@@ -3,38 +3,38 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-def link20():
+def link21():
     getList()
 
 def getList():
     pa=[]
     number=1
     try:
-        print("link 20 start scraping...")
-        lastDate=Links.select().where(Links.LA_name=="Buckinghamshire",Links.LA_pr=="https://www.buckscc.gov.uk/news/").order_by(Links.date.desc())
+        print("link 21 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Aylesbury Vale",Links.LA_pr=="https://www.aylesburyvaledc.gov.uk/news").order_by(Links.date.desc())
         # lastDate=[]
         while True:
             namber=str(number)
             setop=False
-            link='https://www.buckscc.gov.uk/news/?page='+namber
-            r = requests.get(link, timeout=15)
+            link='https://www.aylesburyvaledc.gov.uk/news?page='+namber
+            r = requests.get(link, timeout=15,verify=False)
             soup = BeautifulSoup(r.text, 'html.parser')
-            lista=soup.select("li.thumbnail-wrapper")
-            # print(len(lista))
-            # exit()
+            lista=soup.select_one("div.view.view-news").select_one("div.view-content").select("div.views-row")
+         
             for a in lista[::-1]:
-                s=a.select_one("li.list-group-item.thumbnail-date-caption").getText()
+                s=a.select_one("h5.field-content").getText()
                 # print(s)
                 # print(a.select_one("a").get("href"))
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
-                        LA_name="Buckinghamshire",
-                        LA_pr="https://www.buckscc.gov.uk/news/",
+                        LA_name="Aylesbury Vale",
+                        LA_pr="https://www.aylesburyvaledc.gov.uk/news",
                         date=getDate(s),                        
                         title=a.select_one("a").getText()
                         )
-                    papa.body=getBody(a.select_one("a").get("href"))
-                    papa.image="https://www.buckscc.gov.uk"+a.select_one("img").get("src")
+                    cupid=getBody(a.select_one("a").get("href"))
+                    papa.body=cupid[0]
+                    papa.image=cupid[1]
                     papa.save()
                     
                 else:
@@ -43,7 +43,7 @@ def getList():
                 break
             number+=1
     except Exception as e:
-        print("err link 20 ", str(e) )
+        print("err link 21 ", str(e) )
         # return pa
     # return pa
         
@@ -63,11 +63,15 @@ def compareDate(dates,lastDate):
     dateCompared = date2 > dateCompare          
     return dateCompared
 def getBody(link):
+    image=""
+    text=""
     try:
-        r = requests.get(link, timeout=15)
+        r = requests.get(link, timeout=15,verify=False)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda1=soup.select_one('div.pcg-rte-wrapper').getText()
-        return panda1.replace('\n', ' ').replace('\r', '').strip()
+        panda1=soup.select_one('div.field.field-name-field-news-description').getText().replace('\n', ' ').replace('\r', '').strip()
+        image=soup.select_one('img.img-responsive').get("src") if soup.select_one('img.img-responsive') else ""
+        text=panda1
+        return [text,image]
      
     except:
-        return ""
+        return [text,image]
