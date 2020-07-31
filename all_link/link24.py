@@ -21,8 +21,8 @@ def getList():
         
         for a in lista[::-1]:
             s=a.select_one("pubDate")
-            print(compareDate(s.getText(),lastDate))
-            print(a.select_one("link").getText())
+            # print(compareDate(s.getText(),lastDate))
+            # print(a.select_one("link").getText())
             
             title=a.select_one("title").getText()
             if compareDate(s.getText(),lastDate):
@@ -50,7 +50,7 @@ def getDate(dates):
     return date2.strftime('%Y-%m-%d %H:%M:%S')
 def compareDate(dates,lastDate):
     dt = parse(dates.strip())
-    dateCompare = date(2020, 1, 1)    
+    dateCompare = date(2020, 6, 1)    
     if len(lastDate)>0:
         dateLen=lastDate[0].date
         dateCompare=date(dateLen.year,dateLen.month,dateLen.day)  
