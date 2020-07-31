@@ -29,13 +29,14 @@ def getList():
             for a in lista[::-1]:
                 s=a.select_one("p.date").getText()
                 # print(s)
-                # print(a.select_one("a").get("href"))
+                # print(a.select_one("a").get("title"))
+                # exit()
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
                         LA_name="Bristol, City of",
                 LA_pr="https://news.bristol.gov.uk/news",
                         date=getDate(s),                        
-                        title=a.select_one("a").getText()
+                        title=a.select_one("a").get("title")
                         )
                     papa.body=getBody('https://news.bristol.gov.uk'+a.select_one("a").get("href"))
                     papa.image=a.select_one("img").get("src")

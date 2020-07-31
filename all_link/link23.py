@@ -24,8 +24,8 @@ def getList():
         
         for a in lista[::-1]:
             s=a.select_one("pubDate")
-            print(compareDate(s.getText(),lastDate))
-            print(a.select_one("link").getText())
+            # print(compareDate(s.getText(),lastDate))
+            # print(a.select_one("link").getText())
             image=a.select_one("thumbnail").get("url") if a.select_one("thumbnail") else ""
             title=a.select_one("title").getText()
             if compareDate(s.getText(),lastDate):
