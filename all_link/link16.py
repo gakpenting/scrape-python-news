@@ -11,13 +11,14 @@ def link16():
 def getList():
     pa=[]
     lastDate=Links.select().where(Links.LA_name=="Luton",Links.LA_pr=="lutontoday.co.uk/news").order_by(Links.date.desc())
-    number=lastDate[0].date if len(lastDate) > 0 else date(2020,6,2)
-    
+    number=lastDate[0].date+timedelta(days=1) if len(lastDate) > 0 else date(2020,6,1)
+    number=date(2020,6,29)
     try:
         print("link 16 start scraping...")
         
         while True:
             namber=number
+            # print(namber)
             link='https://www.lutontoday.co.uk/archive/'+str(namber.year)+'/'+str(namber.month)+'/'+str(namber.day)
             # print(link)
             headers={'User-Agent':"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36"}
@@ -31,7 +32,7 @@ def getList():
                 break
             
             for a in lista:
-                # print(a.select_one("a").getText())
+                # print("https://www.lutontoday.co.uk"+a.select_one("a").get("href"))
                 if a.select_one("a").get("href").strip() != 'undefined': 
                     sipu=getBodyAndImage("https://www.lutontoday.co.uk"+a.select_one("a").get("href"))
                     papa,created=Links.get_or_create(
@@ -84,4 +85,4 @@ def getBodyAndImage(link):
     except Exception as e:
         print("link16 getbodyandimagerr "+str(e))
     #     exit()
-        return [s,image,datess]
+        return [datess,image,s]
