@@ -3,7 +3,7 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from dateutil.parser import parse
 from mysqls.pandasql import Links
-def link30():
+def link34():
     getList()
     
 
@@ -13,24 +13,23 @@ def getList():
     number=0
     
     try:
-        print("link 30 start scraping...")
-        lastDate=Links.select().where(Links.LA_name=="County Durham",Links.LA_pr=="https://www.durham.gov.uk/article/1873/News-Events").order_by(Links.date.desc())
-        link='https://www.durham.gov.uk/news?format=rss&category=AAP'
-        r = requests.get(link, timeout=5)
-        soup = BeautifulSoup(r.text, 'lxml-xml')
+        print("link 34 start scraping...")
+        lastDate=Links.select().where(Links.LA_name=="Carlisle",Links.LA_pr=="https://www.carlisle.gov.uk/news-and-events").order_by(Links.date.desc())
+        link='https://www.carlisle.gov.uk/news-and-events/rss/5196-1'
+        r = requests.get(link, timeout=15)
+        soup = BeautifulSoup(r.content, features='xml')
         lista=soup.select("item")
-        
         for a in lista[::-1]:
             s=a.select_one("pubDate")
             # print(compareDate(s.getText(),lastDate))
-            # print(a.get("xml:base"))
-            cabang=getImageAndBody(a.get("xml:base"))
+            # print(a.select_one("link"))
+            cabang=getImageAndBody(a.select_one("link").getText())
             image=cabang[0]
             title=a.select_one("title").getText()
             if compareDate(s.getText(),lastDate):
                 papa,created=Links.get_or_create(
-                    LA_name="County Durham",
-                LA_pr="https://www.durham.gov.uk/article/1873/News-Events",
+                    LA_name="Carlisle",
+                LA_pr="https://www.carlisle.gov.uk/news-and-events",
                                         date=getDate(s.getText()),
                                         title=title                    
                     )
@@ -39,7 +38,7 @@ def getList():
                 papa.save()
                 
     except Exception as e:
-        print("err link 30 ", str(e) )
+        print("err link 34 ", str(e) )
         # return pa
     # return pa
         
@@ -64,9 +63,8 @@ def getImageAndBody(link):
     try:
         r = requests.get(link, timeout=15)
         soup = BeautifulSoup(r.text,'html.parser')
-        body2=soup.select_one("div.a-intro.a-intro--default").getText().replace('\n', ' ').replace('\r', '').strip()
-        image=soup.select_one("div.imagecaptioninline img").get("src") if soup.select_one("div.imagecaptioninline img") else ""       
-        body=body2+soup.select_one("div.a-body.a-body--default").getText().replace('\n', ' ').replace('\r', '').strip()
+        image="https://www.carlisle.gov.uk"+soup.select_one("div.in_article_image img").get("src") if soup.select_one("div.in_article_image img") else ""       
+        body=soup.select_one("div.content").getText().replace('\n', ' ').replace('\r', '').strip()
         return [image,body]
         
      
