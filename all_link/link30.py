@@ -20,7 +20,7 @@ def getList():
         soup = BeautifulSoup(r.text, 'lxml-xml')
         lista=soup.select("item")
         
-        for a in lista[::-1]:
+        for a in lista:
             s=a.select_one("pubDate")
             # print(compareDate(s.getText(),lastDate))
             # print(a.get("xml:base"))
@@ -37,6 +37,8 @@ def getList():
                 papa.body=cabang[1]
                 papa.image=image
                 papa.save()
+            else:
+                break
                 
     except Exception as e:
         print("err link 30 ", str(e) )
