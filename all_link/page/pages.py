@@ -3,10 +3,11 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-
-def getList(numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi=None,linkedin="",href="a",linkedin2=""):
+import json
+import re
+def getList(pagis=1,getDatea=None,replaceRegex=None,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi=None,linkedin="",href="a",linkedin2=""):
     
-    number=1
+    number=pagis
     try:
         print("link "+numero+" start scraping...")
         lastDate=Links.select().where(Links.LA_name==LA_name,Links.LA_pr==LA_pr).order_by(Links.date.desc())
@@ -15,24 +16,41 @@ def getList(numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=N
             namber=str(number)
             setop=False
             link=links+namber
-            r = requests.get(link, timeout=15,verify=False)
-            soup = BeautifulSoup(r.text, 'html.parser')
+            headers={'User-Agent':"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"}
+            r = requests.get(link, timeout=15,verify=False,headers=headers)
+            soup=None
+            if r.headers['content-type']=="application/json":
+                a=json.loads(r.text)
+                soup = BeautifulSoup(a["html"], 'html.parser')
+            else:
+                soup = BeautifulSoup(r.text, 'html.parser')
+            
+            # print(soup)
             lista=soup.select(listas)
-            # print(lista[0])
+            # print(lista[0].prettify())
             # exit()
-
-            for a in lista[::-1]:
-                s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
+            if len(lista) == 0:
+                break
+            for a in lista:
+                
+                s=None
+                if datesss:
+                    s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
+                if replaceRegex:
+                    cop=re.search(replaceRegex, a.select_one(datesss).getText())
+                    s=cop.group() if cop else ""
+                if getDatea:
+                    s=getDatea(linkedin+a.select_one(href).get("href"))
                 print(s)
                 print(a.select_one("a").get("href"))
                 imajin=linkedin2+a.select_one(imajinasi).get("src") if a.select_one(imajinasi) else "" if imajinasi else ""
-                
+                titulos=a.select_one("a").get("title") if a.select_one("a").get("title") else ""
                 if compareDate(s,lastDate):
                     papa,created=Links.get_or_create(
                         LA_name=LA_name,
                         LA_pr=LA_pr,
                         date=getDate(s),                        
-                        title=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip()
+                        title=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip() if a.select_one(title) else titulos
                         )
                     coki=getBody(linkedin+a.select_one(href).get("href"))
                     papa.body=coki[0] if len(coki) > 0 and coki else ""
@@ -41,7 +59,7 @@ def getList(numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=N
                     
                 else:
                     setop=True
-                    break
+                    # break
             if setop:
                 break
             number+=1

@@ -1,10 +1,10 @@
 import requests
-from datetime import datetime,date
+from datetime import datetime,date,timedelta 
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-
-def getList(dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi=None,linkedin="",href="a",linkedin2=""):
+import re
+def getList(content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi="None",linkedin="",href="a",linkedin2="",**kwargs):
     
     
     try:
@@ -12,26 +12,37 @@ def getList(dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas
         lastDate=Links.select().where(Links.LA_name==LA_name,Links.LA_pr==LA_pr).order_by(Links.date.desc())
         # lastDate=[]
         link=links
-        r = requests.get(link, timeout=15,verify=False)
+        headers={'User-Agent':"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36"}
+        r = requests.get(link, timeout=15,verify=False,headers=headers)
         soup = BeautifulSoup(r.text, 'html.parser')
         lista=soup.select(listas)
-            # print(lista[0])
+        print(len(lista))
             # exit()
 
         for a in lista:
-            s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
+            s=None
+            if datesss:
+                s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
+                
+            if getDatea:
+                s=getDatea(linkedin+a.select_one(href).get("href"))
             print(s)
             print(a.select_one("a").get("href"))
+            if s.lower()=="yesterday":
+                s = date.today() - timedelta(days=1)
             imajin=linkedin2+a.select_one(imajinasi).get("src") if a.select_one(imajinasi) else "" if imajinasi else ""
-            print(compareDate(s,lastDate,dayfirst))
             if compareDate(s,lastDate,dayfirst):
+                carabrim=""
+                carabrim=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip()
+                if replaceRegexTitle:
+                    carabrim=re.sub(replaceRegexTitle, "", carabrim)
                 papa,created=Links.get_or_create(
                     LA_name=LA_name,
                     LA_pr=LA_pr,
                     date=getDate(s,dayfirst),                        
-                    title=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip()
+                    title=carabrim
                     )
-                coki=getBody(linkedin+a.select_one(href).get("href"))
+                coki=getBody(linkedin+a.select_one(href).get("href"),content=content,imajin=imajina)
                 papa.body=coki[0] if len(coki) > 0 and coki else ""
                 papa.image=coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                 papa.save()
@@ -47,7 +58,11 @@ def getList(dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas
     
 
 def getDate(dates, dayfirst=False):
-    dt = parse(dates.strip(),dayfirst=dayfirst)
+    dt=None
+    if type(dates) == date:
+        dt=dates
+    else:
+        dt = parse(dates.strip(),dayfirst=dayfirst)
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
 def compareDate(dates,lastDate,dayfirst=False):

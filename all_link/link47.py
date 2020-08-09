@@ -11,21 +11,22 @@ def link47():
     LA_pr="https://www.devon.gov.uk/northdevonnews/",
     links="https://www.devon.gov.uk/northdevonnews/page/",
     listas="div.row.post",
-    datesss="time.published.updated",
+    datesss="div.post-detail",
     replaceDate=None,
-    title="span.headline.h4",
+    replaceRegex=r"\d{1,2}\s\w+\s\d{4,}",
+    title="h3",
     getBody=getBody,
     imajinasi="img",
-    linkedin="https://www.southderbyshire.gov.uk",
+    linkedin="",
     href="a",
-    linkedin2="https://www.southderbyshire.gov.uk")
+    linkedin2="")
 def getBody(link):
     panda1=""
     image=""
     try:
         r = requests.get(link, timeout=15,verify=False)
         soup = BeautifulSoup(r.text, 'html.parser')
-        a=soup.select("article p")
+        a=soup.select("div#content > *:not(h2):not(h1):not(.single-date):not(#comments):not(.clear)")
         s=""
         for j in a:
             s+=j.getText().replace('\n', ' ').replace('\r', '').strip()
