@@ -23,7 +23,7 @@ def link60():
     linkedin="",
     href="a",
     linkedin2="")
-def getDate(link):
+def getDate(link,**kwargs):
     try:
         headers={'User-Agent':"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36"}
         
@@ -36,7 +36,7 @@ def getDate(link):
      
     except:
         return "1 January 2020"
-def getBody(link):
+def getBody(link,**kwargs):
     panda1=""
     image=""
     try:

@@ -60,7 +60,11 @@ from all_link.link59 import link59
 from all_link.link60 import link60
 from all_link.link61 import link61
 from all_link.link62 import link62
-# from all_link.link63 import link63
+from all_link.link63 import link63
+from all_link.link64 import link64
+from all_link.link65 import link65
+from all_link.link66 import link66
+from all_link.link67 import link67
 from mysqls.pandasql import StartScrape
 def start_all():
     from datetime import datetime
@@ -130,4 +134,8 @@ def start_all():
     link60()
     link61()
     link62()
-    # link63()
+    link63()
+    link64()
+    link65()
+    link66()
+    link67()

@@ -22,7 +22,7 @@ def link52():
     linkedin="",
     href="a",
     linkedin2="")
-def getDate(link):
+def getDate(link,**kwargs):
     try:
         s=None
         r = requests.get(link, timeout=15,verify=False)
@@ -37,7 +37,7 @@ def getDate(link):
     except Exception as e:
         print(str(e))
         return "1 January 2020"
-def getBody(link):
+def getBody(link,**kwargs):
     panda1=""
     image=""
     try:

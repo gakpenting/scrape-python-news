@@ -19,7 +19,7 @@ def link44():
     linkedin="https://eastdevon.gov.uk/",
     href="link",
     linkedin2="")
-def getBody(link):
+def getBody(link,**kwargs):
     panda1=""
     image=""
     try:

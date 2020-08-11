@@ -23,7 +23,7 @@ def link53():
     href="a",
     linkedin2="")
 
-def getBody(link):
+def getBody(link,**kwargs):
     panda1=""
     image=""
     try:

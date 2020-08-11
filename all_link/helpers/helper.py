@@ -14,7 +14,7 @@ def getDate(link=None,date="sam"):
      
     except:
         return "1 January 2020"
-def getBody(link=None,content="sam",imajin="sam"):
+def getBody(link,content="sam",imajin="sam"):
     panda1=""
     image=""
     try:
@@ -30,4 +30,4 @@ def getBody(link=None,content="sam",imajin="sam"):
         return [panda1,image]
      
     except:
-        return None
+        return [panda1,image]

@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
 import re
-def getList(content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi="None",linkedin="",href="a",linkedin2="",**kwargs):
+def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi="None",linkedin="",href="a",linkedin2=""):
     
     
     try:
@@ -25,7 +25,7 @@ def getList(content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA
                 s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
                 
             if getDatea:
-                s=getDatea(linkedin+a.select_one(href).get("href"))
+                s=getDatea(linkedin+a.select_one(href).get("href"),date=datea)
             print(s)
             print(a.select_one("a").get("href"))
             if s.lower()=="yesterday":
@@ -42,7 +42,7 @@ def getList(content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA
                     date=getDate(s,dayfirst),                        
                     title=carabrim
                     )
-                coki=getBody(linkedin+a.select_one(href).get("href"),content=content,imajin=imajina)
+                coki=getBody(link=linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
                 papa.body=coki[0] if len(coki) > 0 and coki else ""
                 papa.image=coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                 papa.save()
