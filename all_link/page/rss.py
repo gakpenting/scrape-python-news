@@ -27,7 +27,7 @@ def getList(xmlType="lxml-xml",content="sam",imajina="",numero=None,LA_name=None
                     title=title                    
                     )
                 papa.body=image[0] if len(image) > 0 else ""
-                papa.image=image[1] if len(image) > 0 and image[1] != "" else imajin
+                papa.image=linkedin2+image[1] if len(image) > 0 and image[1] != "" else imajin
                 papa.save()
             else:
                 break

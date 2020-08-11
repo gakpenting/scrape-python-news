@@ -44,7 +44,7 @@ def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=
                     )
                 coki=getBody(link=linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
                 papa.body=coki[0] if len(coki) > 0 and coki else ""
-                papa.image=coki[1] if len(coki) > 0 and coki[1] != "" else imajin
+                papa.image=linkedin2+coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                 papa.save()
                     
             else:

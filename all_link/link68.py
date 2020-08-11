@@ -6,23 +6,23 @@ from dateutil.parser import parse
 from all_link.page.pages import getList
 from all_link.helpers.helper import getDate,getBody
 import re
-def link65():
+def link68():
     getList(
         pagis=1,
-    numero="65",
-    LA_name="Harlow",
-    LA_pr="https://www.harlow.gov.uk/news",
-    links="https://www.harlow.gov.uk/news?page=",
+    numero="68",
+    LA_name="Thurrock",
+    LA_pr="https://www.thurrock.gov.uk/news",
+    links="https://www.thurrock.gov.uk/news?page=",
     listas="div.views-row",
-    datesss="time",
+    datesss=".date-display-single",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="span.field-content",
+    title="h2",
     getBody=getBody,
-    content="body > div > div.main-container.container.js-quickedit-main-content > div > section > article > div > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item",
+    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
     imajina="sam",
-    imajinasi="img",
-    linkedin="https://www.harlow.gov.uk",
+    imajinasi="sam",
+    linkedin="https://www.thurrock.gov.uk",
     href="a",
-    linkedin2="https://www.harlow.gov.uk")
+    linkedin2="https://www.thurrock.gov.uk")
