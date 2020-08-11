@@ -15,7 +15,7 @@ def getList(xmlType="lxml-xml",content="sam",imajina="",numero=None,LA_name=None
         for a in lista:
             s=a.select_one(datesss).getText()
             # print(compareDate(s.getText(),lastDate))
-            print(a.select_one("title").getText())
+            # print(a.select_one("title").getText())
             image=getBody(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
             title=a.select_one(titles).getText().replace('\n', ' ').replace('\r', '').strip()
             imajin=linkedin2+a.select_one(imajinasi).getText() if a.select_one(imajinasi) else "" if imajinasi else ""

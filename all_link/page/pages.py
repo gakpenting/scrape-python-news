@@ -41,8 +41,8 @@ def getList(datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceReg
                     s=cop.group() if cop else ""
                 if getDatea:
                     s=getDatea(linkedin+a.select_one(href).get("href"),date=datea)
-                print(s)
-                print(a.select_one("a").get("href"))
+                # print(s)
+                # print(a.select_one("a").get("href"))
                 imajin=linkedin2+a.select_one(imajinasi).get("src") if a.select_one(imajinasi) else "" if imajinasi else ""
                 titulos=a.select_one("a").get("title") if a.select_one("a") else ""
                 

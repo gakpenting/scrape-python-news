@@ -26,8 +26,8 @@ def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=
                 
             if getDatea:
                 s=getDatea(linkedin+a.select_one(href).get("href"),date=datea)
-            print(s)
-            print(a.select_one("a").get("href"))
+            # print(s)
+            # print(a.select_one("a").get("href"))
             if s.lower()=="yesterday":
                 s = date.today() - timedelta(days=1)
             imajin=linkedin2+a.select_one(imajinasi).get("src") if a.select_one(imajinasi) else "" if imajinasi else ""
