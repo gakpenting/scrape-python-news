@@ -30,5 +30,8 @@ class StartScrape(Model):
 def deleteWhere(LA_name=None):
     q = Links.delete().where(Links.LA_name == LA_name)
     q.execute()
+def deleteAll():
+    q = Links.delete()
+    q.execute()
 Links.create_table(Links)
 StartScrape.create_table(StartScrape)

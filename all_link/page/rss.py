@@ -3,7 +3,7 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-def getList(xmlType="lxml-xml",content="sam",imajina="",numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss="pubDate",replaceDate="",titles="title",getBody=None,imajinasi=None,linkedin="",href="link",linkedin2=""):
+def getList(xmlType="lxml-xml",datea=None,getDatea=None,content="sam",imajina="",numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss="pubDate",replaceDate="",titles="title",getBody=None,imajinasi=None,linkedin="",href="link",linkedin2=""):
     try:
         print("link "+numero+" start scraping...")
         lastDate=Links.select().where(Links.LA_name==LA_name,Links.LA_pr==LA_pr).order_by(Links.date.desc())
@@ -13,7 +13,11 @@ def getList(xmlType="lxml-xml",content="sam",imajina="",numero=None,LA_name=None
         lista=soup.select(listas)
         
         for a in lista:
-            s=a.select_one(datesss).getText()
+            s=None
+            if datesss:
+                s=a.select_one(datesss).getText()
+            if getDatea:
+                s=getDatea(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),datea)
             # print(compareDate(s.getText(),lastDate))
             # print(a.select_one("title").getText())
             image=getBody(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
@@ -29,8 +33,7 @@ def getList(xmlType="lxml-xml",content="sam",imajina="",numero=None,LA_name=None
                 papa.body=image[0] if len(image) > 0 else ""
                 papa.image=linkedin2+image[1] if len(image) > 0 and image[1] != "" else imajin
                 papa.save()
-            else:
-                break
+            
                 
     except Exception as e:
         print("err link "+numero+" ", str(e) )

@@ -22,12 +22,15 @@ def getBody(link,content="sam",imajin="sam"):
         
         r = requests.get(link, timeout=15,verify=False,headers=headers)
         soup = BeautifulSoup(r.text, 'html.parser')
+        # print(soup)
         panda=soup.select(content) if soup.select(content) else []
+        
         for a in panda:
             panda1+=a.getText().replace('\n', ' ').replace('\r', '').strip()            
         
         image=soup.select_one(imajin).get("src") if soup.select_one(imajin) else ""
         return [panda1,image]
      
-    except:
+    except Exception as e:
+        print(str(e))
         return [panda1,image]

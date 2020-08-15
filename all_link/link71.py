@@ -1,28 +1,26 @@
+
 import requests
 from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-from all_link.page.pages import getList
+from all_link.page.rss import getList
 from all_link.helpers.helper import getDate,getBody
-import re
-def link65():
+def link71():
     getList(
-        pagis=1,
-    numero="65",
-    LA_name="Harlow",
-    LA_pr="https://www.harlow.gov.uk/news",
-    links="https://www.harlow.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss="time",
+    numero="71",
+    LA_name="Eden",
+    LA_pr="https://www.eden.gov.uk/your-council/news/",
+    links="https://www.cheltenham.gov.uk/rss/news",
+    listas="item",
+    datesss="pubDate",
     replaceDate=None,
-    replaceRegex=None,
-    getDatea=None,
-    title="span.field-content",
+    titles="title",
     getBody=getBody,
-    content="body > div > div.main-container.container.js-quickedit-main-content > div > section > article > div > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item",
-    imajina="sam",
-    imajinasi="img",
-    linkedin="https://www.harlow.gov.uk",
-    href="a",
-    linkedin2="https://www.harlow.gov.uk")
+    content="#content > *:not(h2):not(.date):not(ul):not(img)",
+    imajina="#content > img",
+    imajinasi="sam",
+    linkedin="",
+    href="link",
+    linkedin2="")
+

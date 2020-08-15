@@ -47,8 +47,7 @@ def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=
                 papa.image=linkedin2+coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                 papa.save()
                     
-            else:
-                break
+            
         
     except Exception as e:
         print("err "+numero+" ", str(e) )
