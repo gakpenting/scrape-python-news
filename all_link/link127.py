@@ -11,16 +11,16 @@ def link127():
     numero="127",
     LA_name="Warwickshire",
     LA_pr="https://news.warwickshire.gov.uk/",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.warwickshire.gov.uk/rss/news",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content="#content>.page-content>*:not(.rss-feed):not(page-meta)>*:not(.meta):not(:last-child):not(.imageCaption)",
+    imajina="#content>.page-content>*:not(.rss-feed):not(page-meta)>*>img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.warwickshire.gov.uk")
 
