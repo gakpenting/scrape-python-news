@@ -11,16 +11,16 @@ def link101():
     numero="101",
     LA_name="Stockton-on-Tees",
     LA_pr="https://www.stockton.gov.uk/news/",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.stockton.gov.uk/rss",
     listas="item",
-    datesss="pubDate",
+    datesss="pubdate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".media > *:not(.datesmall)",
+    imajina=".media > div > img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.stockton.gov.uk")
 

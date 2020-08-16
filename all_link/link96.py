@@ -11,16 +11,16 @@ def link96():
     numero="96",
     LA_name="North Norfolk",
     LA_pr="https://www.north-norfolk.gov.uk/news/",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.north-norfolk.gov.uk/rss-news/",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".rich-text > *:not(img):not(:nth-child(2))",
+    imajina=".rich-text img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.north-norfolk.gov.uk")
 

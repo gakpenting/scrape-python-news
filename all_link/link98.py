@@ -11,16 +11,16 @@ def link98():
     numero="98",
     LA_name="North Yorkshire",
     LA_pr="https://www.northyorks.gov.uk/news",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.northyorks.gov.uk/rss.xml",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".content",
+    imajina=".content img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.northyorks.gov.uk/")
 

@@ -42,9 +42,9 @@ def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=
                     date=getDate(s,dayfirst),                        
                     title=carabrim
                     )
-                coki=getBody(link=linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
+                coki=getBody(link=linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina,linkedin2=linkedin2)
                 papa.body=coki[0] if len(coki) > 0 and coki else ""
-                papa.image=linkedin2+coki[1] if len(coki) > 0 and coki[1] != "" else imajin
+                papa.image=coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                 papa.save()
                     
             

@@ -53,9 +53,9 @@ def getList(datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceReg
                         date=getDate(s),                        
                         title=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip() if a.select_one(title) else titulos if titulos else ""
                         )
-                    coki=getBody(linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
+                    coki=getBody(linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina,linkedin2=linkedin2)
                     papa.body=coki[0] if len(coki) > 0 and coki else ""
-                    papa.image=linkedin2+coki[1] if len(coki) > 0 and coki[1] != "" else imajin
+                    papa.image=coki[1] if len(coki) > 0 and coki[1] != "" else imajin
                     papa.save()
                     
                 else:

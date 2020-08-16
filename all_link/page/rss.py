@@ -8,7 +8,7 @@ def getList(xmlType="lxml-xml",datea=None,getDatea=None,content="sam",imajina=""
         print("link "+numero+" start scraping...")
         lastDate=Links.select().where(Links.LA_name==LA_name,Links.LA_pr==LA_pr).order_by(Links.date.desc())
         link=links
-        r = requests.get(link, timeout=5)
+        r = requests.get(link.strip(), timeout=5)
         soup = BeautifulSoup(r.text, xmlType)
         lista=soup.select(listas)
         
@@ -20,7 +20,7 @@ def getList(xmlType="lxml-xml",datea=None,getDatea=None,content="sam",imajina=""
                 s=getDatea(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),datea)
             # print(compareDate(s.getText(),lastDate))
             # print(a.select_one("title").getText())
-            image=getBody(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina)
+            image=getBody(linkedin+a.select_one(href).getText().replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina,linkedin2=linkedin2)
             title=a.select_one(titles).getText().replace('\n', ' ').replace('\r', '').strip()
             imajin=linkedin2+a.select_one(imajinasi).getText() if a.select_one(imajinasi) else "" if imajinasi else ""
             if compareDate(s,lastDate):
@@ -31,7 +31,7 @@ def getList(xmlType="lxml-xml",datea=None,getDatea=None,content="sam",imajina=""
                     title=title                    
                     )
                 papa.body=image[0] if len(image) > 0 else ""
-                papa.image=linkedin2+image[1] if len(image) > 0 and image[1] != "" else imajin
+                papa.image=image[1] if len(image) > 0 and image[1] != "" else imajin
                 papa.save()
             
                 

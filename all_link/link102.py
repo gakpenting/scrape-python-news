@@ -8,19 +8,21 @@ from all_link.page.rss import getList
 from all_link.helpers.helper import getDate,getBody
 def link102():
     getList(
-    numero="102",
-    LA_name="Kettering",
-    LA_pr="https://www.kettering.gov.uk/news",
-    links="https://www.cheltenham.gov.uk/rss/news",
-    listas="item",
-    datesss="pubDate",
-    replaceDate=None,
-    titles="title",
-    getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
-    imajinasi="sam",
-    linkedin="",
-    href="link",
-    linkedin2="")
+    numero="102",#gausah diisi
+    LA_name="Kettering",#gausah diisi
+    LA_pr="https://www.kettering.gov.uk/news",#gausah diisi
+    links="https://www.kettering.gov.uk/rss/news",
+    listas="item",#gausah diisi
+    datesss="pubDate",#kadang kudu diisi
+    replaceDate=None,#gausah diisi
+    titles="title",#gausah diisi
+    getBody=getBody,#gausah diisi
+    content="#content > *:not(.page-heading):not(.list):not(.grid)",
+    imajina="sam",
+    imajinasi="sam",#gausah diisi
+    linkedin="",#kadang kudu diisi
+    href="link",#gausah diisi
+    linkedin2=""#kadang kudu diisi
+    )
+    #103-203
 
