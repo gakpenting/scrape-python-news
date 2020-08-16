@@ -486,7 +486,7 @@ def start_all():
     link100()
     link101()
     link102()
-    # link103()
+    link103()
     # link104()
     # link105()
     # link106()
