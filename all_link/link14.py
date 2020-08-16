@@ -23,6 +23,8 @@ def getList():
             r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("li.blog-post")
+            if len(lista) == 0:
+                break
             
             for a in lista[::-1]:
                 s=a.select_one("abbr.timeago").getText()

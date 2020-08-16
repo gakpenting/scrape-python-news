@@ -24,7 +24,8 @@ def getList():
             r = requests.get(link, timeout=15,verify=False)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select_one(".oBoxList").select("li")
-            
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 s=a.select_one(".oBoxItemDate.item-date").getText()
                 # print(s)

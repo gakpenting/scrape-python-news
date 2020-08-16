@@ -24,6 +24,8 @@ def getList():
             r = requests.get(link, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select_one(".newsEventsList").find_all(recursive=False)
+            if len(lista) == 0:
+                break  
             cakalang=lista[(capin - 1) * 10:capin * 10]
             cakalang.reverse()
             for a in cakalang:

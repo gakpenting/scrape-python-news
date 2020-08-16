@@ -24,7 +24,8 @@ def getList():
             r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("article")
-            
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 s=a.select_one(".fusion-single-line-meta").select("span")[1].getText()
                 # print(compareDate(s,lastDate))

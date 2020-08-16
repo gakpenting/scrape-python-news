@@ -24,6 +24,8 @@ def getList():
             r = requests.get(link, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select(".cell.cell-contained.no-padding")
+            if len(lista) == 0:
+                break
             # print(len(lista))
             # exit()
             for a in lista[::-1]:
