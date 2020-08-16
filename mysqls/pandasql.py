@@ -4,8 +4,8 @@ from datetime import datetime
 # Connect to a MySQL database on network.
 # mysql_db = MySQLDatabase('all_link', user='admin', password='England123&',
 #                          host='kedalert-1.cf8fsz14idww.eu-west-2.rds.amazonaws.com', port=3306 ,charset='utf8mb4')
-mysql_db = MySQLDatabase('all_link', user='root', password='',
-                         host='127.0.0.1', port=3306 ,charset='utf8mb4')
+mysql_db = MySQLDatabase('all_link', user='root', password='helloworld',
+                         host='127.0.0.1', port=6603 ,charset='utf8mb4')
 class Links(Model):
 
     id = PrimaryKeyField(null=False)

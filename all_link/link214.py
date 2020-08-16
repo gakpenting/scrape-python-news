@@ -9,23 +9,25 @@ from all_link.helpers.helper import getDate,getBody
 import re
 def link214():
     getList(
+        
     pagis=1,
     numero="214",
     LA_name="Conwy",
     LA_pr="https://www.conwy.gov.uk/en/Spotlight/Press-Releases/Press-Releases.aspx",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.conwy.gov.uk/en/Spotlight/Press-Releases/Press-Releases.aspx?Listing_List_GoToPage=",
+    listas=".sys_itemslist",
+    datesss=None,
+    replaceDate="Posted on ",
     replaceRegex=None,
-    getDatea=None,
+    datea=".sys_news-posted-date",
+    getDatea=getDate,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".sys_record-control > *:not(h2)",
     imajina="sam",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.conwy.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

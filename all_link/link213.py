@@ -13,19 +13,19 @@ def link213():
     numero="213",
     LA_name="South Tyneside",
     LA_pr="https://www.southtyneside.gov.uk/article/55009/News",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.southtyneside.gov.uk/article/55009/News?p=",
+    listas=".item",
+    datesss="time",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="a > span",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".id-content-bottom > *:not(time):not(.snippet):not(.id-govmetric)",
+    imajina="img.main",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

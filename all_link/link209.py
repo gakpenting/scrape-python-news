@@ -13,19 +13,19 @@ def link209():
     numero="209",
     LA_name="Cannock Chase",
     LA_pr="https://www.cannockchasedc.gov.uk/council/latest-news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.cannockchasedc.gov.uk/council/latest-news?page=",
+    listas=".view-content > *",
+    datesss=".date",
     replaceDate=None,
-    replaceRegex=None,
+    replaceRegex=r"\w+\s",
     getDatea=None,
-    title="h2",
+    title=".title",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".contleft > *:not(.eventtitle):not(.eventdesc)",
+    imajina=".img > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.cannockchasedc.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

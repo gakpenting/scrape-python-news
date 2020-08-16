@@ -3,13 +3,25 @@ from datetime import datetime,date,timedelta
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-def getDate(link=None,date="sam"):
+import re
+def getDate(link=None,date="sam",replaceDate=None,replaceRegex=None):
     try:
         headers={'User-Agent':"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36"}
         
-        r = requests.get(link, timeout=15,verify=False,headers=headers)
+        r = requests.get(link.strip(), timeout=15,verify=False,headers=headers)
         soup = BeautifulSoup(r.text, 'html.parser')
-        panda1=soup.select_one(date).getText() if soup.select_one(date) else "1 January 2020"
+        panda1="1 January 2020"
+        if replaceRegex:
+            cop=re.search(replaceRegex, soup.select_one(date).getText())
+            panda1=cop.group() if cop else "1 January 2020"
+        if replaceDate:
+            panda1=soup.select_one(date).getText().replace(replaceDate,"") if soup.select_one(date) else "1 January 2020"
+        else:
+            panda1=soup.select_one(date).getText() if soup.select_one(date) else "1 January 2020"
+        if soup.select_one(date):
+            if soup.select_one(date).name == "meta":
+                panda1=soup.select_one(date).get("content")
+        # print(soup.select_one(date).getText())
         return panda1
      
     except:
@@ -25,7 +37,7 @@ def getBody(link,content="sam",imajin="sam",linkedin2=""):
         # print(soup)
         # exit()
         panda=soup.select(content) if soup.select(content) else []
-        # print(soup)
+        # print(panda)
         # exit()
         for a in panda:
             panda1+=a.getText().replace('\n', ' ').replace('\r', '').strip()            

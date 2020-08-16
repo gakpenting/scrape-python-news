@@ -5,7 +5,7 @@ from mysqls.pandasql import Links
 from dateutil.parser import parse
 import json
 import re
-def getList(datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceRegex=None,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi=None,linkedin="",href="a",linkedin2=""):
+def getList(dayfirst=False,datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceRegex=None,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi=None,linkedin="",href="a",linkedin2=""):
     
     number=pagis
     try:
@@ -40,17 +40,17 @@ def getList(datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceReg
                     cop=re.search(replaceRegex, a.select_one(datesss).getText())
                     s=cop.group() if cop else ""
                 if getDatea:
-                    s=getDatea(linkedin+a.select_one(href).get("href"),date=datea)
+                    s=getDatea(linkedin+a.select_one(href).get("href"),date=datea,replaceDate=replaceDate,replaceRegex=replaceRegex)
                 # print(s)
                 # print(a.select_one("a").get("href"))
                 imajin=linkedin2+a.select_one(imajinasi).get("src") if a.select_one(imajinasi) else "" if imajinasi else ""
                 titulos=a.select_one("a").get("title") if a.select_one("a") else ""
                 
-                if compareDate(s,lastDate):
+                if compareDate(s,lastDate,dayfirst):
                     papa,created=Links.get_or_create(
                         LA_name=LA_name,
                         LA_pr=LA_pr,
-                        date=getDate(s),                        
+                        date=getDate(s,dayfirst),                        
                         title=a.select_one(title).getText().replace('\n', ' ').replace('\r', '').strip() if a.select_one(title) else titulos if titulos else ""
                         )
                     coki=getBody(linkedin+a.select_one(href).get("href").replace('\n', ' ').replace('\r', '').strip(),content=content,imajin=imajina,linkedin2=linkedin2)
@@ -71,12 +71,16 @@ def getList(datea=None,content="sam",imajina="",pagis=1,getDatea=None,replaceReg
         
     
 
-def getDate(dates):
-    dt = parse(dates.strip())
+def getDate(dates, dayfirst=False):
+    dt=None
+    if type(dates) == date:
+        dt=dates
+    else:
+        dt = parse(dates.strip(),dayfirst=dayfirst)
     date2 = date(dt.year, dt.month, dt.day)
     return date2.strftime('%Y-%m-%d %H:%M:%S')
-def compareDate(dates,lastDate):
-    dt = parse(dates.strip())
+def compareDate(dates,lastDate,dayfirst=False):
+    dt = parse(dates.strip(),dayfirst=dayfirst)
     dateCompare = date(2020, 6, 1)  
     if len(lastDate)>0:
         dateLen=lastDate[0].date
