@@ -11,16 +11,16 @@ def link113():
     numero="113",
     LA_name="Inverclyde",
     LA_pr="https://www.inverclyde.gov.uk/news",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.inverclyde.gov.uk/rss/news/",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".content >  *:not(:nth-child(1)):not(:nth-child(2)):not(:last-child):not(div):not(figure)",
+    imajina=".content >  figure >img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.inverclyde.gov.uk")
 
