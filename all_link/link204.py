@@ -13,19 +13,19 @@ def link204():
     numero="204",
     LA_name="Telford and Wrekin",
     LA_pr="http://newsroom.telford.gov.uk/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="http://newsroom.telford.gov.uk/?grid-page=",
+    listas=".grid-row",
+    datesss=".newsItem > div.col-sm-9> div > div > span:nth-child(1)",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="h5 > a",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content="#content",
+    imajina="#mainImg > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="http://newsroom.telford.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

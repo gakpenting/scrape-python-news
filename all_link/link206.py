@@ -4,21 +4,19 @@ from datetime import datetime,date
 from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
-from all_link.page.pages import getList
+from all_link.page.nopages import getList
 from all_link.helpers.helper import getDate,getBody
 import re
 def link206():
     getList(
-    pagis=1,
     numero="206",
     LA_name="Mendip",
     LA_pr="https://www.mendip.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
+    links="https://www.mendip.gov.uk/news",
     listas="div.views-row",
-    datesss=".date-display-single",
+    datesss=None,
     replaceDate=None,
-    replaceRegex=None,
-    getDatea=None,
+    getDatea=getDate,
     title="h2",
     getBody=getBody,
     content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",

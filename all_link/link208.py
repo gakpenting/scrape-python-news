@@ -13,19 +13,19 @@ def link208():
     numero="208",
     LA_name="Rotherham",
     LA_pr="https://www.rotherham.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.rotherham.gov.uk/news?page=",
+    listas=".page-content > ul > li",
+    datesss=".meta--date",
+    replaceDate="Published: ",
     replaceRegex=None,
     getDatea=None,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".page-content",
+    imajina=".page-content > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.rotherham.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://www.rotherham.gov.uk")
 
 
