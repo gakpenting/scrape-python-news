@@ -17,7 +17,7 @@ def link127():
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content>.page-content>*:not(.rss-feed):not(page-meta)>*:not(.meta):not(:last-child):not(.imageCaption)",
+    content="#content>.page-content>*:not(.rss-feed):not(page-meta)>*:not(.meta):not(.imageCaption):not(img)",
     imajina="#content>.page-content>*:not(.rss-feed):not(page-meta)>*>img",
     imajinasi="sam",
     linkedin="",
