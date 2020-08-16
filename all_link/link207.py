@@ -13,19 +13,19 @@ def link207():
     numero="207",
     LA_name="Somerset West and Taunton",
     LA_pr="https://www.somersetwestandtaunton.gov.uk/news/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.somersetwestandtaunton.gov.uk/news/?page=",
+    listas="body > main > div.container.mt-5 > div > div.col-md-8 > div > div",
+    datesss="p.date",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content="body > main > div.container.mt-5 > div > div.col-md-8 > *:not(h1):not(.title-date)",
     imajina="sam",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.somersetwestandtaunton.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

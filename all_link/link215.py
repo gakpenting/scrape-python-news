@@ -13,19 +13,19 @@ def link215():
     numero="215",
     LA_name="Merthyr Tydfil",
     LA_pr="https://www.merthyr.gov.uk/news-and-events/latest-news/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.merthyr.gov.uk/news-and-events/latest-news/?page=",
+    listas=".listing",
+    datesss="h5",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="h4",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".news-listing-page",
+    imajina=".img-article",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.merthyr.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://www.merthyr.gov.uk")
 
 
