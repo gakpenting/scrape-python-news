@@ -11,16 +11,16 @@ def link126():
     numero="126",
     LA_name="Wales",
     LA_pr="https://gov.wales/announcements",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://gov.wales/announcements/rss",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".paragraph>div>*",
+    imajina=".page__image>div>img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://gov.wales")
 
