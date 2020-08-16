@@ -11,16 +11,16 @@ def link119():
     numero="119",
     LA_name="Tamworth",
     LA_pr="https://www.tamworth.gov.uk/news",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.tamworth.gov.uk/news/rss.xml",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content=".field-items > * > *",
+    imajina=".field-items > * img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.tamworth.gov.uk")
 
