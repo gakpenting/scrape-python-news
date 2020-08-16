@@ -18,7 +18,7 @@ def link216():
     datesss=None,
     replaceDate=None,
     replaceRegex=None,
-    datea="",
+    datea=".a-body__inner > p:first-child",
     getDatea=getDate,
     title="h2",
     getBody=getBody,

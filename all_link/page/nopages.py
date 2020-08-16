@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from mysqls.pandasql import Links
 from dateutil.parser import parse
 import re
-def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi="None",linkedin="",href="a",linkedin2=""):
+def getList(datea=None,replaceRegex=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=None,dayfirst=False,numero=None,LA_name=None,LA_pr=None,links=None,listas=None,datesss=None,replaceDate=None,title=None,getBody=None,imajinasi="None",linkedin="",href="a",linkedin2=""):
     
     
     try:
@@ -16,14 +16,17 @@ def getList(datea=None,replaceRegexTitle=None,content="sam",imajina="",getDatea=
         r = requests.get(link, timeout=15,verify=False,headers=headers)
         soup = BeautifulSoup(r.text, 'html.parser')
         lista=soup.select(listas)
-        print(len(lista))
+        # print(len(lista))
             # exit()
-
+        
+        if len(lista) == 0:
+            exit()
         for a in lista:
             s=None
             if datesss:
                 s=a.select_one(datesss).getText().replace(replaceDate,"") if replaceDate else a.select_one(datesss).getText()
-                
+            # print(s)
+            # exit()
             if getDatea:
                 s=getDatea(linkedin+a.select_one(href).get("href"),date=datea)
             # print(s)
