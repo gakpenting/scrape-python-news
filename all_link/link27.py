@@ -20,7 +20,8 @@ def getList():
             r = requests.get(link, timeout=15,verify=False)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("article")
-         
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 s=a.select_one("span.updated").getText()
                 # print(s)

@@ -13,19 +13,20 @@ def link216():
     numero="216",
     LA_name="Powys",
     LA_pr="https://en.powys.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://en.powys.gov.uk/news?p=",
+    listas=".item__title",
+    datesss=None,
     replaceDate=None,
     replaceRegex=None,
-    getDatea=None,
+    datea=".a-body__inner > p:first-child",
+    getDatea=getDate,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".a-body__inner > *:not(:first-child)",
+    imajina=".a-body__inner img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://en.powys.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://en.powys.gov.uk")
 
 

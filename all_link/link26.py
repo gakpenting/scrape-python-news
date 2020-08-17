@@ -20,6 +20,8 @@ def getList():
             r = requests.get(link, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("ul.sys_itemslist > li:nth-child(1)")
+            if len(lista) == 0:
+                break
             # print(lista[10])
             # exit()
             for a in lista[::-1]:

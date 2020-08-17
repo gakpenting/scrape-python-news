@@ -22,7 +22,8 @@ def getList():
             r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("div.col-xs-12.views-row")
-            
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 s=a.select_one("span.field-content")
                 # print(compareDate(s.getText(),lastDate))

@@ -9,23 +9,23 @@ from all_link.helpers.helper import getDate,getBody
 import re
 def link218():
     getList(
-    pagis=1,
+    pagis=0,
     numero="218",
     LA_name="Wolverhampton",
     LA_pr="https://www.wolverhampton.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.wolverhampton.gov.uk/news?page=",
+    listas=".view-content > .views-row",
+    datesss="time.datetime",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="h3",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content="#block-omega-bigbluedoor-content > div > article",
+    imajina="#block-entityviewcontent > div > article > div > div > div > article > div.field.field--name-field-media-image.field--type-image.field--label-hidden.field__item > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.wolverhampton.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://www.wolverhampton.gov.uk")
 
 

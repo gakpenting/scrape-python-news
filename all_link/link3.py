@@ -20,6 +20,8 @@ def getAll():
             link="https://www.lbbd.gov.uk/rest/news?_format=json&page="+str(numba)
             r = requests.get(link, timeout=5)
             lista=r.json()["results"]
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 soup = BeautifulSoup(a["date"], 'html.parser')
                 soup2=soup.select_one("time")

@@ -13,19 +13,19 @@ def link219():
     numero="219",
     LA_name="Horsham",
     LA_pr="https://www.horsham.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.horsham.gov.uk/news?result_62178_result_page=",
+    listas=".newslistmain",
+    datesss=".newslistleft > li:nth-of-type(3)",
+    replaceDate="Published: ",
     replaceRegex=None,
     getDatea=None,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".rte",
+    imajina=".newsbannerimage > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 

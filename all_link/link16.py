@@ -12,7 +12,7 @@ def getList():
     pa=[]
     lastDate=Links.select().where(Links.LA_name=="Luton",Links.LA_pr=="lutontoday.co.uk/news").order_by(Links.date.desc())
     number=lastDate[0].date+timedelta(days=1) if len(lastDate) > 0 else date(2020,6,1)
-    number=date(2020,6,29)
+    
     try:
         print("link 16 start scraping...")
         
@@ -26,6 +26,8 @@ def getList():
             soup = BeautifulSoup(r.text, 'html.parser')
             
             lista=soup.select_one("div#frameInner").select_one("div").select_one("ul").select("li")
+            if len(lista) == 0:
+                break
             
             if not lista:
                 # print("po")

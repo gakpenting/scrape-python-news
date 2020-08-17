@@ -20,7 +20,8 @@ def getList():
             r = requests.get(link, timeout=15,verify=False)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select_one("div.view-content").select("div.views-row")
-         
+            if len(lista) == 0:
+                break
             for a in lista[::-1]:
                 s=a.select_one("span.blog-content-created").getText()
                 # print(s)

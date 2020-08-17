@@ -22,7 +22,8 @@ def getList():
             r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("div.card.w-100.archive-card")
-                     
+            if len(lista) == 0:
+                break        
             for a in lista[::-1]:
                 s=a.select_one("strong")
                 # print(compareDate(s.getText().replace("Publish Date:","").strip(),lastDate))

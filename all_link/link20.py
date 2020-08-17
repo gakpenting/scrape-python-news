@@ -20,6 +20,8 @@ def getList():
             r = requests.get(link, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("li.thumbnail-wrapper")
+            if len(lista) == 0:
+                break
             # print(len(lista))
             # exit()
             for a in lista[::-1]:

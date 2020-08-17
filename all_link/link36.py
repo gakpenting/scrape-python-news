@@ -20,6 +20,8 @@ def getList():
             r = requests.get(link, timeout=15,verify=False)
             soup = BeautifulSoup(r.text, 'html.parser')
             lista=soup.select("li.row")
+            if len(lista) == 0:
+                break
             # print(lista[0])
             # exit()
 
