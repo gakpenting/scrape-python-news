@@ -11,16 +11,16 @@ def link134():
     numero="134",
     LA_name="Worthing",
     LA_pr="https://www.adur-worthing.gov.uk/news/",
-    links="https://www.cheltenham.gov.uk/rss/news",
+    links="https://www.adur-worthing.gov.uk/news/rss/",
     listas="item",
     datesss="pubDate",
     replaceDate=None,
     titles="title",
     getBody=getBody,
-    content="#content > *:not(h2):not(.date):not(ul):not(img)",
-    imajina="#content > img",
+    content="#page-content>*:not(:nth-child(1)):not(:nth-child(2)):not(.back-to-top):not(.jump-menu-see-also):not(#contact-details):not(.button-link)",
+    imajina="#page-content>* >img",
     imajinasi="sam",
     linkedin="",
     href="link",
-    linkedin2="")
+    linkedin2="https://www.adur-worthing.gov.uk")
 
