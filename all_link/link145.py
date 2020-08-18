@@ -13,19 +13,19 @@ def link145():
     numero="145",
     LA_name="Hammersmith and Fulham",
     LA_pr="https://www.lbhf.gov.uk/allnews",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.lbhf.gov.uk/allnews?page=",
+    listas="li.i__articles-index",
+    datesss="time",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="a",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".body>*:not(.media)",
+    imajina=".header__article>*>img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    linkedin="https://www.lbhf.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="")
 
 
