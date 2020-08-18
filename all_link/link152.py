@@ -9,23 +9,23 @@ from all_link.helpers.helper import getDate,getBody
 import re
 def link152():
     getList(
-    pagis=1,
+    pagis=0,
     numero="152",
     LA_name="Waltham Forest",
     LA_pr="https://walthamforest.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.walthamforest.gov.uk/media?page=",
+    listas="#block-system-main>div>.view-content>div.views-row",
+    datesss="#block-system-main>div>.view-content>div.views-row>div.views-field.views-field-nothing-1>span>.views-field-created",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="#block-system-main>div>.view-content>div.views-row>div.views-field.views-field-nothing-1>span>h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content="#block-system-main>article>div.field.field-name-body>*>*>*",
+    imajina="#block-system-main>article> div.field.field-name-field-header-image>div>div>img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://walthamforest.gov.uk",
+    href="#block-system-main>div>.view-content>div.views-row>div.views-field.views-field-nothing-1>span>h2>span>a",
+    linkedin2="")
 
 

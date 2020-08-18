@@ -535,7 +535,7 @@ def start_all():
     link149()
     # link150()
     link151()
-    # link152()
+    link152()
     # link153()
     # link154()
     # link155()
