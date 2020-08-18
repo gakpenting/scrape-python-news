@@ -13,19 +13,20 @@ def link149():
     numero="149",
     LA_name="Lambeth",
     LA_pr="https://love.lambeth.gov.uk/all-posts/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://love.lambeth.gov.uk/all-posts/page/",
+    listas=".more_posts",
+    datesss=None,
+    replaceDate="Publishing date: ", # lek misal ono publishing date
     replaceRegex=None,
-    getDatea=None,
-    title="h2",
+    datea=".main_content>.meta>.date",
+    getDatea=getDate,
+    title=".more_posts>*>.more_post_text>h4",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".post_text>*",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    imajinasi=".more_posts>*>.promobox>img",
+    linkedin="",
+    href=".more_posts>a",
+    linkedin2="")
 
 
