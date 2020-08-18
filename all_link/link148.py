@@ -13,19 +13,19 @@ def link148():
     numero="148",
     LA_name="Islington",
     LA_pr="https://www.islington.media/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.islington.media/news?page=",
+    listas=".cell.cell-contained.no-padding",
+    datesss=".cell.cell-contained.no-padding>div.flex>p.date",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".cell.cell-contained.no-padding>div.flex>h3",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".content-body>*",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    imajinasi=".cell.cell-contained.no-padding>.thumbnail>a>img",
+    linkedin="https://www.islington.media",
+    href=".cell.cell-contained.no-padding>.thumbnail>a",
+    linkedin2="")
 
 
