@@ -13,19 +13,19 @@ def link146():
     numero="146",
     LA_name="Harrow",
     LA_pr="https://www.harrow.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.harrow.gov.uk/news?page=",
+    listas=".list__item>article",
+    datesss=".meta.meta--date",
+    replaceDate="Published: ",
     replaceRegex=None,
     getDatea=None,
     title="h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".page-content>p.summary,div.editor>*",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    imajinasi="a>img",
+    linkedin="https://www.harrow.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://www.harrow.gov.uk")
 
 
