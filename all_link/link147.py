@@ -13,19 +13,19 @@ def link147():
     numero="147",
     LA_name="Hillingdon",
     LA_pr="https://www.hillingdon.gov.uk/article/2036/News-in-Hillingdon",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.hillingdon.gov.uk/article/2036/News-in-Hillingdon?p=",
+    listas="div.grid__cell--news",
+    datesss="div>div>div>.pa-block__details>div.pa-block__info",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="div>div>div>.pa-block__details>div.pa-block__title>a",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".a-body__inner>*",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    imajinasi="div.grid__cell--news>div>div>div>div.pa-block__imagecontainer>a>img",
+    linkedin="https://www.hillingdon.gov.uk",
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="https://www.hillingdon.gov.uk")
 
 
