@@ -9,23 +9,25 @@ from all_link.helpers.helper import getDate,getBody
 import re
 def link141():
     getList(
-    pagis=1,
+    pagis=1, 
     numero="141",
     LA_name="Isles of Scilly",
     LA_pr="https://www.scilly.gov.uk/most-recent-news-items",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.scilly.gov.uk/most-recent-news-items?page=", # iki genti
+    listas="#block-system-main > div > div > div.view-content > div.views-row", # iki genti
+    datesss=None, #iki genti
+    replaceDate="Publishing date: ", # lek misal ono publishing date
     replaceRegex=None,
-    getDatea=None,
-    title="h2",
+    datea=".date-display-single", # lek misal gaono date ndek depan
+    getDatea=getDate, # lek misal gaono date ndek depan
+    title="span.field-content", # title awal
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
+    content="div[property='content:encoded']",# ganti
+    imajina="sam", # misal ada gambar di content
+    imajinasi="sam", # misal ada gambar di depan
+    linkedin="", # link
     href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin2="" # link
+    )
 
 
