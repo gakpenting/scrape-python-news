@@ -13,19 +13,19 @@ def link151():
     numero="151",
     LA_name="Tower Hamlets",
     LA_pr="https://www.towerhamlets.gov.uk/News_events/News.aspx",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.towerhamlets.gov.uk/News_events/News.aspx?NewsListing_List_GoToPage=",
+    listas=".sys_subitem",
+    datesss=".sys_subitem>div>.sys_subitem-summary>dl>dd.sys_news-datepublished",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".sys_subitem>div>h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".sys_record-control>:not(div)",
+    imajina=".sys_record-control>div.sys_record-image-control>img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://www.towerhamlets.gov.uk",
+    href=".sys_subitem>div>h2>a",
+    linkedin2="https://www.towerhamlets.gov.uk")
 
 
