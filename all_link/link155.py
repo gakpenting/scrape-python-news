@@ -13,19 +13,19 @@ def link155():
     numero="155",
     LA_name="Trafford",
     LA_pr="https://www.trafford.gov.uk/residents/news/news-archive.aspx",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.trafford.gov.uk/residents/news/news-archive.aspx?Archive_Listing_List_GoToPage=",
+    listas=".sys_subitem",
+    datesss=".sys_subitem>div>.sys_subitem-summary>dl>dd.sys_news-datepublished",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".sys_subitem>div>h3",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content="#main-article>div.sys_none>div>*:not(div)",
     imajina="sam",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://www.trafford.gov.uk",
+    href=".sys_subitem>div>h3>a",
+    linkedin2="https://www.trafford.gov.uk")
 
 
