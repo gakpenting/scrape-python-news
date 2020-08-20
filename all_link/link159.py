@@ -13,19 +13,19 @@ def link159():
     numero="159",
     LA_name="Broxbourne",
     LA_pr="https://www.broxbourne.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
-    replaceDate=None,
+    links="https://www.broxbourne.gov.uk/news?page=",
+    listas=".page-content>ul.list.list--listing>*",
+    datesss=".page-content>ul.list.list--listing>li.list__item>article>a>div>div.listing__meta>*",
+    replaceDate="Published:",
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".page-content>ul.list.list--listing>li.list__item>article>a>div>h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".page-content>div.editor>*",
     imajina="sam",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://www.broxbourne.gov.uk",
+    href=".page-content>ul.list.list--listing>li.list__item>article>a",
+    linkedin2="https://www.broxbourne.gov.uk")
 
 
