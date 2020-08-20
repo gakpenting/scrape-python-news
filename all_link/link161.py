@@ -9,23 +9,23 @@ from all_link.helpers.helper import getDate,getBody
 import re
 def link161():
     getList(
-    pagis=1,
+    pagis=0,
     numero="161",
     LA_name="East Hertfordshire",
     LA_pr="https://www.eastherts.gov.uk/latest-news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.eastherts.gov.uk/latest-news?page=",
+    listas=".view.view-news.view-id-news>div>*",
+    datesss=".view.view-news.view-id-news>div>div>article>div>div>div>div>div.layout__region.layout__region--second.col>div>div>span.field.field--name-created.field--type-created.field--label-hidden",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".view.view-news.view-id-news>div>div>article>div>div>div>div>div.layout__region.layout__region--second.col>div>div>span.field.field--name-title.field--type-string.field--label-hidden",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".content>div.clearfix.text-formatted.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item>p",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    imajinasi=".view.view-news.view-id-news>div>div>article>div>div>div>div>div.layout__region.layout__region--first.col>div>div>div>img",
+    linkedin="https://www.eastherts.gov.uk",
+    href=".view.view-news.view-id-news>div>div>article>div>div>div>div>div.layout__region.layout__region--second.col>div>div>span.field.field--name-title.field--type-string.field--label-hidden>a",
+    linkedin2="https://www.eastherts.gov.uk")
 
 
