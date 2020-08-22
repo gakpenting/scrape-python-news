@@ -13,19 +13,19 @@ def link176():
     numero="176",
     LA_name="Leicester",
     LA_pr="https://news.leicester.gov.uk/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://news.leicester.gov.uk/?page=",
+    listas="#news-section > div.columns.small-12.medium-9.large-9.news-items.page-content > ul > li",
+    datesss="#news-section > div.columns.small-12.medium-9.large-9.news-items.page-content > ul > li > div > div.news-item-content > span.muted",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="#news-section > div.columns.small-12.medium-9.large-9.news-items.page-content > ul > li > div > div.news-item-content > span.h4",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content="body > div.off-canvas-wrap > div > main > div > div > div.small-12.medium-9.columns.page-content>*:not(:nth-child(2)):not(h1):not(img)",
+    imajina="body > div.off-canvas-wrap > div > main > div > div > div.small-12.medium-9.columns.page-content>img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://news.leicester.gov.uk",
+    href="#news-section > div.columns.small-12.medium-9.large-9.news-items.page-content > ul > li > div > a",
+    linkedin2="https://news.leicester.gov.uk")
 
 
