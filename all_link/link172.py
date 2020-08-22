@@ -13,19 +13,19 @@ def link172():
     numero="172",
     LA_name="Blackpool",
     LA_pr="https://www.blackpool.gov.uk/News/News.aspx",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.blackpool.gov.uk/News/News.aspx?Archive_Listing_List_GoToPage=",
+    listas="#Archive_Listing_List>*>div.sys_subitem",
+    datesss="#Archive_Listing_List>*>div.sys_subitem > div > div.sys_subitem-summary>dl>dd.sys_news-datepublished",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="#Archive_Listing_List>*>div.sys_subitem > div > h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content=".sys_record-control.sys_news-record>*:not(table):not(div)",
+    imajina=".sys_record-control.sys_news-record>div.sys_record-image-control>img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://www.blackpool.gov.uk",
+    href="#Archive_Listing_List>*>div.sys_subitem > div > h2>a",
+    linkedin2="https://www.blackpool.gov.uk")
 
 
