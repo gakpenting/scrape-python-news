@@ -13,19 +13,19 @@ def link171():
     numero="171",
     LA_name="Tonbridge and Malling",
     LA_pr="https://www.tmbc.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.tmbc.gov.uk/news?result_9913_result_page=",
+    listas=".article-mainbody>ul>li",
+    datesss=".article-mainbody>ul>li > p:nth-child(3)",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title=".article-mainbody>ul>li> h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content=".article-mainbody >div>div.desc>*",
     imajina="sam",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="",
+    href=".article-mainbody>ul>li > p:nth-child(2)>a",
+    linkedin2="https://www.tmbc.gov.uk")
 
 
