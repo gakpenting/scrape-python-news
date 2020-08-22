@@ -13,19 +13,21 @@ def link174():
     numero="174",
     LA_name="Preston",
     LA_pr="https://www.preston.gov.uk/news",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.preston.gov.uk/news?p=",
+    listas="#maincontent > div > div > div.grid.grid--list.grid--1col > div",
+    datesss=None,
     replaceDate=None,
     replaceRegex=None,
-    getDatea=None,
-    title="h2",
+      getDatea=getDate,
+    datea="#maincontent > div > div > div.a-body.a-body--default > p:nth-child(2)",
+    title="div > div > div.item__content > div.item__title > a",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content="#maincontent > div > div > div.a-body.a-body--default>*>*:not(img):not(strong)",
+
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    imajinasi="#maincontent > div > div > div.grid.grid--list.grid--1col > div:nth-child(1) > div > div > div.item__imagecontainer > img",
+    linkedin="",
+    href="div > div > div.item__content > div.item__title > a",
+    linkedin2="")
 
 
