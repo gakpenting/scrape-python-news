@@ -13,19 +13,19 @@ def link173():
     numero="173",
     LA_name="Hyndburn",
     LA_pr="https://www.hyndburnbc.gov.uk/hyndburnnews/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.hyndburnbc.gov.uk/hyndburnnews/page/",
+    listas="article > section > div > div > div > div > div.sp_news_static.design-17.wpnaw-grid-3.wpnaw-news-grid.wpnaw-clearfix > div > div > div.news-overlay > div.news-short-content",
+    datesss="article > section > div > div > div > div > div.sp_news_static.design-17.wpnaw-grid-3.wpnaw-news-grid.wpnaw-clearfix > div > div > div.news-overlay > div.news-short-content > div.news-date",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="article > section > div > div > div > div > div.sp_news_static.design-17.wpnaw-grid-3.wpnaw-news-grid.wpnaw-clearfix > div > div > div.news-overlay > div.news-short-content >h2",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
+    content="div.content > article > section.post_content > div > div > div > div > div>div>*",
     imajina="sam",
-    imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    imajinasi="article > section > div > div > div > div > div.sp_news_static.design-17.wpnaw-grid-3.wpnaw-news-grid.wpnaw-clearfix > div > div > div.news-overlay > div.news-image-bg>a>img",
+    linkedin="",
+    href="article > section > div > div > div > div > div.sp_news_static.design-17.wpnaw-grid-3.wpnaw-news-grid.wpnaw-clearfix > div > div > div.news-overlay > div.news-short-content >h2>a",
+    linkedin2="")
 
 
