@@ -13,19 +13,19 @@ def link181():
     numero="181",
     LA_name="North Kesteven",
     LA_pr="https://www.n-kesteven.gov.uk/your-council/council-news/",
-    links="https://www.thurrock.gov.uk/news?page=",
-    listas="div.views-row",
-    datesss=".date-display-single",
+    links="https://www.n-kesteven.gov.uk/your-council/news/council-news/?lister12074p=",
+    listas="#-ux-content > div > div > div > div.column-outer.column-alpha > div > div > div.oBoxContainer.oHeadlineBoxStyle1.pel.lister.lister-list.style-1.show-images > div.oBoxOuter.oPageListerContainerOuter.pel-o > div > div > div > ul > li",
+    datesss="span > span.oBoxItemOuter.item-body-outer > span > span.oBoxItemDate.item-date",
     replaceDate=None,
     replaceRegex=None,
     getDatea=None,
-    title="h2",
+    title="span > span.oBoxItemOuter.item-body-outer > span > span.oBoxItemTitle.item-title > a",
     getBody=getBody,
-    content="div.field.field-name-body.field-type-text-with-summary.field-label-hidden > div > div > *",
-    imajina="sam",
+    content="#-ux-content > div > div > div > div.column-outer.column-alpha > div > div > div>*:not(div):not(span)",
+    imajina="#espr_renderHost_PageStructureDisplayRenderer_esctl_7ccbe766-b5cc-4f77-b1ad-1585c8ccc003_InnerRenderer_7ccbe766-b5cc-4f77-b1ad-1585c8ccc003_esctl_6aef6f7c-a901-4f51-b56d-e0d8d49c4378_InnerRenderer_6aef6f7c-a901-4f51-b56d-e0d8d49c4378_esctl_8a74af61-dc0f-4ded-a490-063e6178bd43_pnlAssetImgHolder > div > img",
     imajinasi="sam",
-    linkedin="https://www.thurrock.gov.uk",
-    href="a",
-    linkedin2="https://www.thurrock.gov.uk")
+    linkedin="https://www.n-kesteven.gov.uk",
+    href="span > span.oBoxItemOuter.item-body-outer > span > span.oBoxItemTitle.item-title > a",
+    linkedin2="https://www.n-kesteven.gov.uk")
 
 
