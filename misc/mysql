@@ -1,0 +1,7 @@
+Master username
+admin
+Master password
+England123&
+Endpoint
+kedalert-1.cf8fsz14idww.eu-west-2.rds.amazonaws.com
+CREATE DATABASE all_link COLLATE utf8mb4_general_ci;

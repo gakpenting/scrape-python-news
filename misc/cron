@@ -1,0 +1,2 @@
+* 0 * * * cd $HOME/projects/scrape-python && run-one $HOME/projects/scrape-python/env/bin/python $HOME/projects/scrape-python/main.py > cronlog.txt 2>&1 # run 12 am at midnight
+* 12 * * * cd $HOME/projects/scrape-python && run-one $HOME/projects/scrape-python/env/bin/python $HOME/projects/scrape-python/main.py > cronlog.txt 2>&1 # run 12 am at midnight
